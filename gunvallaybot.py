@@ -18,6 +18,8 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
+token = os.environ.get('Nzk0MTE0ODQyNTc5MzA0NDU4.X-2HFA.-e7SCf9lrKJHU6dMN-9W5mTvzjI')
+
 client = discord.Client()
 
 @client.event
@@ -110,4 +112,4 @@ async def on_message(message):
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
 
-client.os.environ.get(token)
+client.run(token)
