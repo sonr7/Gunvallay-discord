@@ -31,21 +31,21 @@ async def on_message(message):
         return
     if '。' in message.content:
         return
-    if message.content == 'いってきます':
+    if 'いってき' in message.content:
         await message.channel.send('いってら！今日もがんばれ👍')
-    if message.content == '勉強する':
-        await message.channel.send('了解！勉強がんばれ👍')
-    if message.content == 'おはよう' or message.content == 'おはす' or message.content == 'おはやう' or message.content == 'おはすー' or message.content == 'おはょ' or message.content == 'おはよ' or message.content == 'おはよー':
+    if '勉強' in message.content:
+        await message.channel.send('勉強がんばれ👍')
+    if 'おは' in message.content:
         await message.channel.send('おは！今日も一日がんばれ👍')
-    if message.content == 'おやすみ' or message.content == 'おやすみー' or message.content == 'おやす' or message.content == 'おやすー' or message.content == 'good night' or message.content == 'おやすみぃ':
+    if 'おやす' in message.content:
         await message.channel.send('おう！おやすみ！睡眠がんばれ👍')
-    if message.content == 'こんにちは' or message.content == 'こんにちはー' or message.content == 'こんちゃ' or message.content == 'こんちゃす' or message.content == 'こんちゃすー' or message.content == 'Hi' or message.content == 'Hello':
+    if  'こんにちは' in message.content or message.content == 'こんちゃ' or message.content == 'こんちゃす' or message.content == 'こんちゃすー' or message.content == 'Hi' or message.content == 'Hello':
         await message.channel.send('こんちゃ！頑張ってるかい？応援するぜ！がんばれ👍')
     if message.content == 'こんばんは' or message.content == 'こんばんはー':
         await message.channel.send('こんばんは！まだ今日は終わってないぞ！がんばれ👍')
-    if message.content == 'ただいまー' or message.content == 'ただいま' or message.content == 'おかえり' or message.content == 'おかえりぃ':
+    if 'ただいま' in message.content or 'おか' in message.content:
         await message.channel.send('おかえりぃ！頑張れたかい？')
-    if message.content == 'がんばる' or message.content == '頑張る' or message.content == 'がんばる！' or message.content == '頑張る！' or message.content == 'がんばろう！' or message.content == '頑張ろう！' or message.content == 'がんばろう' or message.content == '頑張ろう' or message.content == 'がんばれ👍':
+    if 'がんば' or '頑張' in message.content:
         await message.channel.send('がんばれ👍！')
     if message.content == 'がんばれ君' :
         await message.channel.send('呼んだ？')
