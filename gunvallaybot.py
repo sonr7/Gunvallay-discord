@@ -109,21 +109,25 @@ async def on_message(message):
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
     if '#wd' in message.content:
-        wd, year, month, day = message.content.split()
+        wd, year_str, month_str, day_str = message.content.split()
         if month == 1:
             month = 13
         elif month == 2:
             month = 14
-        year0 = year[-2:]
+        month = int(month_str)
+        day = int(day_str)
+        year0_str = year[-2:]
+        year0 = int(year_str)
         year1 = year[-2:] // 4
-        year2 = year[:1] // 4
+        year6 = int(year_str[:1]
+        year2 = year6 // 4
         month1 = (month + 1) * 26 // 10
         wd1 = day + year0 + year1 + month1 + year2
         year3 = year[:1] * 2
         wd2 = wd1 - year3
         wd3 = wd2 % 7
         wd_list = ['土日月火水木金']
-        wdanswer = f'wd_list[wd3]曜日だよ！'
+        wdanswer = f'｛wd_list[wd3]｝曜日だよ！'
         await message.channel.send(wdanswer)
         
         
