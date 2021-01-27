@@ -119,7 +119,7 @@ async def on_message(message):
         year0_str = year[-2:]
         year0 = int(year_str)
         year1 = year[-2:] // 4
-        year6 = int(year_str[:1]
+        year6 = int(year_str[:1])
         year2 = year6 // 4
         month1 = (month + 1) * 26 // 10
         wd1 = day + year0 + year1 + month1 + year2
