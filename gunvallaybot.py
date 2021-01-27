@@ -108,5 +108,10 @@ async def on_message(message):
         root2 = math.sqrt(root1)
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
+        
+@client.event
+async def reply(message):
+    reply = f'{message.author.mention} ん？どした？' 
+    await message.channel.send(reply) 
 
 client.run(token)
