@@ -110,9 +110,9 @@ async def on_message(message):
         await message.channel.send(root)
     if '#wd' in message.content:
         wd, year, month, day = message.content.split()
-        if month = '1':
+        if month = 1:
             month = 13
-        elif month = '2':
+        elif month = 2:
             month = 14
         year0 = year[-2:]
         year1 = year[-2:] // 4
