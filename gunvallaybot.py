@@ -108,7 +108,9 @@ async def on_message(message):
         root2 = math.sqrt(root1)
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
-   
+    if '!d bump' in message.content:
+        time.sleep(2)
+        await message.channel.send('bumpの時間！bumpがんばれ👍')
         
         
 @client.event
