@@ -22,6 +22,10 @@ token = os.environ.get('DISCORD_BOT_TOKEN')
 
 client = discord.Client()
 
+now = datetime.now()
+
+time_now = time.now()
+
 @client.event
 async def on_ready():
     print('起動しました')
@@ -112,7 +116,12 @@ async def on_message(message):
     if '!d bump' in message.content:
         time.sleep(1)
         await message.channel.send('bumpの時間！bumpがんばれ👍')
-   
+    if '今何時' in message.content:
+        await message.channel.send(now)
+    if time_now = 12:23:45.000000:
+        await message.channel.send('なう')
+        
+        
         
         
 @client.event
