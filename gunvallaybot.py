@@ -118,9 +118,7 @@ async def on_message(message):
         await message.channel.send('bumpの時間！bumpがんばれ👍')
     if '今何時' in message.content:
         await message.channel.send(now)
-    if time_now = '0:0:10.000000':
-        await message.channel.send('じほ！今日もがんばれ👍')
-        
+
         
         
         
