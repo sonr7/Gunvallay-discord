@@ -7,7 +7,7 @@ import math
 from functools import reduce
 from operator import mul
 from fractions import Fraction
-import time
+import datetime
 
 def inverse(f):
     return Fraction(f.denominator,f.numerator)
