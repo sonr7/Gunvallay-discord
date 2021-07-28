@@ -8,6 +8,8 @@ from functools import reduce
 from operator import mul
 from fractions import Fraction
 import datetime
+import time
+
 
 def inverse(f):
     return Fraction(f.denominator,f.numerator)
@@ -21,8 +23,6 @@ logging.basicConfig(level=logging.INFO)
 token = os.environ.get('DISCORD_BOT_TOKEN')
 
 client = discord.Client()
-
-time_now = time.now()
 
 @client.event
 async def on_ready():
