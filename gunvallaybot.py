@@ -22,8 +22,6 @@ token = os.environ.get('DISCORD_BOT_TOKEN')
 
 client = discord.Client()
 
-now = datetime.now()
-
 time_now = time.now()
 
 @client.event
