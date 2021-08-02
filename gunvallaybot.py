@@ -116,7 +116,7 @@ async def on_message(message):
     if '#help' in message.content:
         embed = discord.embed(
                               title = "がんばれ君が助けに来た！"
-                              color = 0x00ff00
+                              color = "0x00ff00"
             　　　　　　　　　　description = "がんばれ君の使い方（接し方）"
         embed.add_field(name = "応答", value = "たまに言葉で反応するときがあるよ！（「。」を使えば黙らせられるよー）")
         embed.add_field(name = "#p x y", value = "足し算できるよ！3個以上の数値もできるよ！（この場合はx+yになるよー）")
