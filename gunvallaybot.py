@@ -9,6 +9,7 @@ from operator import mul
 from fractions import Fraction
 import datetime
 import time
+import random
 
 
 def inverse(f):
@@ -124,6 +125,12 @@ async def on_message(message):
         embed.add_field(name = "#s x y", value = "累乗できるよ！（この場合はxのy乗になるよー）", inline = False)
         embed.add_field(name = "#r x", value = "ルートの値求めてくれるよ！", inline = False)
         await message.channel.send(embed = embed)
+    if '#rlt' in message.content:
+        rlt_list = message.content.split()
+        rlt_list.remove('#rlt')
+        rlt_result = random.choice(rlt_list)
+        await message.channel.send(rlt_result)
+       
 
 
             
