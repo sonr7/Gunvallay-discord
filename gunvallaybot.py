@@ -107,8 +107,8 @@ async def on_message(message):
         square = square1 ** square2
         await message.channel.send(square)
     if '#r' in message.content:
-        root0, root1_str = message.content.split()
-        root1 = float(root1_str)
+        root0, root12_str = message.content.split()
+        root1 = float(root12_str)
         root2 = math.sqrt(root1)
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
