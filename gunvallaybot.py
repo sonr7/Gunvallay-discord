@@ -123,7 +123,7 @@ async def on_message(message):
         embed.add_field(name = "#o x y", value = "割り算あまりできるよ！")
         embed.add_field(name = "#s x y", value = "累乗できるよ！（この場合はxのy乗になるよー）")
         embed.add_field(name = "#r x", value = "ルートの値求めてくれるよ！")
-        await channel.send(embed = embed)
+        await message.channel.send(embed = embed)
 
             
 
