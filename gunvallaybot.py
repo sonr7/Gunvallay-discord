@@ -126,7 +126,7 @@ async def on_message(message):
         embed.add_field(name = "#s x y", value = "累乗できるよ！（この場合はxのy乗になるよー）", inline = False)
         embed.add_field(name = "#r x", value = "ルートの値求めてくれるよ！", inline = False)
         await message.channel.send(embed = embed)
-    if '#rlt' in message.content:
+    if '#llt' in message.content:
         rlt_list = message.content.split()
         rlt_list.remove('#llt')
         rlt_result = random.choice(rlt_list)
