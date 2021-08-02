@@ -128,8 +128,8 @@ async def on_message(message):
     if '#rlt' in message.content:
         rlt_list = message.content.split()
         rlt_list.remove('#rlt')
-        rltresult = random.choice(rlt_list)
-        await message.channel.send(rltresult)
+        rlt_result = random.choice(rlt_list)
+        await message.channel.send(rlt_result)
        
 
 
