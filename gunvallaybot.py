@@ -124,14 +124,7 @@ async def on_message(message):
         embed.add_field(name = "#s x y", value = "累乗できるよ！（この場合はxのy乗になるよー）")
         embed.add_field(name = "#r x", value = "ルートの値求めてくれるよ！")
         await channel.send(embed = embed)
-    if '!d bump' in message.content:
-        count = 0
-        while count <= 10:
-            try:
-                bump_message = await client.wait_for("message" check = check, timeout = 10)
-                if '!d bump' in message.content:
-                    await client.wait_for("message" check = check, timeout =10)
-                
+
             
 
         
