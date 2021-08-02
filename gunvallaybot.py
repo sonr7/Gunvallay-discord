@@ -111,11 +111,31 @@ async def on_message(message):
         root2 = math.sqrt(root1)
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
-    if '!d bump' in message.content:
-        time.sleep(1)
-        await message.channel.send('bumpの時間！bumpがんばれ👍')
     if '今何時' in message.content:
         await message.channel.send(now)
+    if '#help' in message.content:
+        embed = discord.embed(
+                              title = "がんばれ君が助けに来た！"
+                              color = 0x00ff00
+            　　　　　　　　　　description = "がんばれ君の使い方（接し方）"
+        embed.add_field(name = "応答", value = "たまに言葉で反応するときがあるよ！（「。」を使えば黙らせられるよー）")
+        embed.add_field(name = "#p x y", value = "足し算できるよ！3個以上の数値もできるよ！（この場合はx+yになるよー）")
+        embed.add_field(name = "#m x y", value = "引き算できるよ！3個以上の数値もできるよ！（この場合はx-yになるよー）")
+        embed.add_field(name = "#t x y", value = "掛け算できるよ！3個以上の数値もできるよ！（この場合はx×yになるよー）")
+        embed.add_field(name = "#d x y", value = "割り算できるよ！3個以上の数値もできるよ！（この場合はx÷yになるよー）")
+        embed.add_field(name = "#o x y", value = "割り算あまりできるよ！")
+        embed.add_field(name = "#s x y", value = "累乗できるよ！（この場合はxのy乗になるよー）")
+        embed.add_field(name = "#r x", value = "ルートの値求めてくれるよ！")
+        await channel.send(embed = embed)
+    if '!d bump' in message.content:
+        count = 0
+        while count <= 10:
+            try:
+                bump_message = await client.wait_for("message" check = check, timeout = 10)
+                if '!d bump' in message.content:
+                    await client.wait_for("message" check = check, timeout =10)
+                
+            
 
         
         
