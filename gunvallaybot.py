@@ -114,9 +114,7 @@ async def on_message(message):
     if '今何時' in message.content:
         await message.channel.send(now)
     if '#help' in message.content:
-        embed = discord.embed(
-                              title = "がんばれ君が助けに来た！"
-        　　　　　　　　　　　　)
+        embed = discord.embed(title = "がんばれ君が助けに来た！")
         embed.add_field(name = "応答", value = "たまに言葉で反応するときがあるよ！（「。」を使えば黙らせられるよー）")
         embed.add_field(name = "#p x y", value = "足し算できるよ！3個以上の数値もできるよ！（この場合はx+yになるよー）")
         embed.add_field(name = "#m x y", value = "引き算できるよ！3個以上の数値もできるよ！（この場合はx-yになるよー）")
