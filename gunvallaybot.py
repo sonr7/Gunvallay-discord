@@ -128,7 +128,7 @@ async def on_message(message):
         await message.channel.send(embed = embed)
     if '#rlt' in message.content:
         rlt_list = message.content.split()
-        rlt_list.remove('#rlt')
+        rlt_list.remove('#llt')
         rlt_result = random.choice(rlt_list)
         await message.channel.send(rlt_result)
        
