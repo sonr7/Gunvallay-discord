@@ -125,6 +125,7 @@ async def on_message(message):
         embed.add_field(name = "#r x", value = "ルートの値求めてくれるよ！", inline = False)
         await message.channel.send(embed = embed)
 
+
             
 
         
