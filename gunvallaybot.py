@@ -144,11 +144,11 @@ async def on_message(message):
         await message.channel.send(ebr)
     if '!d bump' in message.content:
         count = 0
-        while count <= 5:
+        while count <= 7200:
             try:
                 def check(m):
                     return m.channel.id == message.channel.id
-                bump_message = await client.wait_for("message", check = check, timeout = 5)
+                bump_message = await client.wait_for("message", check = check, timeout = 7200)
                 if '!d bump!' in message.content:
                     await message.channel.send("まだ経ってないよ！")
             except asyncio.TimeoutError:
