@@ -143,7 +143,7 @@ async def on_message(message):
         ebr = f'メンバー数:{ebr_all}　人数:{ebr_user}　bot数:{ebr_bot}'
         await message.channel.send(ebr)
     if '!d bumpe' in message.content:
-        elif message.content.startswith("!d bumpe"):
+        if message.content.startswith("!d bumpe"):
             if client.user!=message.author:
                 await asyncio.sleep(5)
                 embed = discord.Embed(title="BUMPできるよ！",description="BUMPしようよ！",color=0x24B8B8)
