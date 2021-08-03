@@ -52,7 +52,7 @@ async def on_message(message):
         await message.channel.send('こんばんは！まだ今日は終わってないぞ！がんばれ👍')
     if 'ただいま' in message.content[0:4]: 
         await message.channel.send('おかえりぃ！頑張れたかい？')
-    if 'がんば' in message.content[0:3] or '頑張' in message.content[0:2]:
+    if 'がんば' in message.content or '頑張' in message.content:
         await message.channel.send('おう！俺も応援するぜ！がんばれ👍！')
     if message.content == '@がんばれ君':
         await message.channel.send('ん？どした？')
