@@ -142,7 +142,7 @@ async def on_message(message):
         ebr_bot = sum(1 for member in guild.members if member.bot)
         ebr = f'メンバー数:{ebr_all}　人数:{ebr_user}　bot数:{ebr_bot}'
         await message.channel.send(ebr)
-    if '!D bumpe' in message.content:
+    if '!d bumpe' in message.content:
         count = 0
         while count <= 5:
             try:
