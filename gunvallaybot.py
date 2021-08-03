@@ -149,8 +149,6 @@ async def on_message(message):
                 def check(m):
                     return m.channel.id == message.channel.id
                 bump_message = await client.wait_for("message", check = check, timeout = 5)
-                if '!d bumpe!' in message.content:
-                    await message.channel.send("まだ経ってないよ！")
             except asyncio.TimeoutError:
                 await message.channel.send('bumpできるよ！')
             return
