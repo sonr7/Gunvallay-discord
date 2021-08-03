@@ -142,7 +142,7 @@ async def on_message(message):
         ebr_bot = sum(1 for member in guild.members if member.bot)
         ebr = f'メンバー数:{ebr_all}　人数:{ebr_user}　bot数:{ebr_bot}'
         await message.channel.send(ebr)
-    if '!d bumpe' in message.content:
+    if '!d bump' in message.content:
         if message.content.startswith("!d bump"):
             if client.user!=message.author:
                 await asyncio.sleep(7200)
