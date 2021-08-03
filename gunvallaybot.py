@@ -142,6 +142,19 @@ async def on_message(message):
         ebr_bot = sum(1 for member in guild.members if member.bot)
         ebr = f'メンバー数:{ebr_all}　人数:{ebr_user}　bot数:{ebr_bot}'
         await message.channel.send(ebr)
+    if '!d bump' in message.content:
+        count = 0
+        while count <= 10:
+            try:
+                def check(m):
+                    return m.channel.id == message.channel.id
+                bump_message = await client.wait_for("message", check = check, timeout = 10)
+                if '!d bump!' in message.content:
+                    await message.channel.send("まだ経ってないよ！")
+            except asyncio.TimeoutError:
+                await message.channel.send('bumpできるよ！')
+                    
+                
      
 
 
