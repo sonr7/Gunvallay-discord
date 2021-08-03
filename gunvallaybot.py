@@ -153,6 +153,7 @@ async def on_message(message):
                     await message.channel.send("まだ経ってないよ！")
             except asyncio.TimeoutError:
                 await message.channel.send('bumpできるよ！')
+            return
                     
                 
      
