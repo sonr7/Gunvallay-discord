@@ -23,10 +23,10 @@ logging.basicConfig(level=logging.INFO)
 
 token = os.environ.get('DISCORD_BOT_TOKEN')
 
-client = discord.Client(intents = intents)
-
-intents = discord.Intents.default()
+tents = discord.Intents.default()
 intents.members = True
+
+client = discord.Client(intents = intents)
 
 @client.event
 async def on_ready():
