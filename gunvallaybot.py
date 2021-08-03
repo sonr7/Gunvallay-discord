@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.INFO)
 
 token = os.environ.get('DISCORD_BOT_TOKEN')
 
-tents = discord.Intents.default()
+intents = discord.Intents.default()
 intents.members = True
 
 client = discord.Client(intents = intents)
