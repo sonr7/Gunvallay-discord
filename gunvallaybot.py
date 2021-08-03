@@ -25,8 +25,6 @@ token = os.environ.get('DISCORD_BOT_TOKEN')
 
 client = discord.Client()
 
-guild = message.guild
-
 @client.event
 async def on_ready():
     print('起動しました')
@@ -134,6 +132,7 @@ async def on_message(message):
         rlt_result = random.choice(rlt_list)
         await message.channel.send(rlt_result)
     if '#ebr' in message.content:
+        guild = message.guild
         ebr_all = guild.member_count
         ebr_user = sum(1 for member in guild.members if not member.bot)
         ebr_bot = sum(1 for member in guild.members if member.bot)
