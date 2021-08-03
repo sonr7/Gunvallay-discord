@@ -143,16 +143,11 @@ async def on_message(message):
         ebr = f'メンバー数:{ebr_all}　人数:{ebr_user}　bot数:{ebr_bot}'
         await message.channel.send(ebr)
     if '!d bumpe' in message.content:
-        count = 0
-        while count <= 5:
-            try:
-                def check(m):
-                    return m.channel.id == message.channel.id
-                bump_message = await client.wait_for("message", check = check, timeout = 5)
-            except asyncio.TimeoutError:
-                await message.channel.send('bumpできるよ！')
-            return
-            
+        elif message.content.startswith("!d bumpe"):
+            if client.user!=message.author:
+                await asyncio.sleep(5)
+                embed = discord.Embed(title="BUMPできるよ！",description="BUMPしようよ！",color=0x24B8B8)
+                await message.channel.send(embed=embed)
                     
                 
      
