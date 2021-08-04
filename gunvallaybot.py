@@ -143,11 +143,20 @@ async def on_message(message):
         ebr = f'メンバー数:{ebr_all}　人数:{ebr_user}　bot数:{ebr_bot}'
         await message.channel.send(ebr)
     if '!d bump' in message.content:
-        if message.content.startswith("!d bump"):
+        if message.content.startswith("!d bumpe"):
             if client.user!=message.author:
-                await asyncio.sleep(7200)
-                embed = discord.Embed(title="BUMPできるよ！",description="BUMPしようよ！",color=0x24B8B8)
-                await message.channel.send(embed=embed)
+                def checks(m):
+                    return m.channel == message.channel and m.author.id==302050872383242240
+                bp=await client.wait_for('message', check=checks, timeout=15)
+                msgid=bp.id
+                embmsg=await message.channel.fetch_message(msgid)
+                bumpdata="EmbedProxy(url='https://disboard.org/images/bot-command-image-bump.png', proxy_url='https://images-ext-1.discordapp.net/external/tAuRcs-FCy2M8OaTS9Ims62J1vrFiviahjBDtpZrrBs/https/disboard.org/images/bot-command-image-bump.png', width=800, height=200)"
+                getdata=embmsg.embeds[0].image
+                if str(bumpdata)==str(getdata):
+                    await asyncio.sleep(5)
+                    embed = discord.Embed(title="BUMPできるよ！",description="BUMPがんばれ👍！",color=0x24B8B8)
+                    await message.channel.send(embed=embed)
+                    print("send:bump!!!")
                     
                 
      
