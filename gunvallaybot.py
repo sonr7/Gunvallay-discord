@@ -10,7 +10,7 @@ from fractions import Fraction
 import datetime
 import time
 import random
-
+import wikipedia
 
 def inverse(f):
     return Fraction(f.denominator,f.numerator)
@@ -185,6 +185,13 @@ async def on_message(message):
         await message.channel.send('くぁwせdrftgyふじこlp')
     if client.user in message.mentions:
         await reply(message)
+    if '#wiki'in message.content:
+        wiki0, wiki1 = message.content.split()
+        wikipedia.set_lang('ja')
+        page = wikipedia.page(wiki1)
+        embed = discord.Embed()
+        embed.add_field(title = page.title, value = page.summary, inline = False)
+        await message.channel.send(embed = embed)
         
                    
 
