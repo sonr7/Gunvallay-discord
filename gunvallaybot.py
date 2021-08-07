@@ -192,7 +192,7 @@ async def on_message(message):
         wikipedia.set_lang('ja')
         page_search = wikipedia.search(wiki1, results = 11)
         page_search_url = f'https://ja.wikipedia.org/wiki/{page_search}'
-        page_int = page_search.find(page)
+        page_int = page_search.index(page)
         embed = discord.Embed()
         for page in page_search:
             page_url = f'https://ja.wikipedia.org/wiki/{page}'
