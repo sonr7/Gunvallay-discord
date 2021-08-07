@@ -197,6 +197,7 @@ async def on_message(message):
             page_int = page_search.index(page)
             page_url = f'https://ja.wikipedia.org/wiki/{page}'
             embed.add_field(name = page, value = f'{page}なら{page_int}', inline = False)
+            embed.remove_field(0)
         await message.channel.send(embed = embed)
             
         
