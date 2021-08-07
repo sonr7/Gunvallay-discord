@@ -191,7 +191,7 @@ async def on_message(message):
         wikipedia.set_lang('ja')
         page = wikipedia.page(wiki1)
         embed = discord.Embed()
-        embed.add_field(title = page.title, value = page.summary, inline = False)
+        embed.add_field(name = page.title, value = page.summary, inline = False)
         await message.channel.send(embed = embed)
         
                    
