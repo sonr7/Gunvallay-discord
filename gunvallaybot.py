@@ -144,6 +144,7 @@ async def on_message(message):
         embed.add_field(name = "#ebr", value = "鯖内のメンバー数、人数、BOT数がわかるよ！", inline = False)
         embed.add_field(name = "#fjk", value = "くぁwせdrftgyふじこlp", inline = False)
         embed.add_field(name = "#wiki", value = "wikiで検索してくれるよ！", inline = False)
+        embed.add_field(name = "#wach x y", value = "wikiでxの検索候補をy個表示してくれるよ！", inline =False)
         await message.channel.send(embed = embed)
     if '#llt' in message.content:
         rlt_list = message.content.split()
