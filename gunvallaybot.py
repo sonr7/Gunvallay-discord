@@ -194,7 +194,7 @@ async def on_message(message):
         page_search_url = f'https://ja.wikipedia.org/wiki/{page_search}'
         for page in page_search:
             page_url = f'https://ja.wikipedia.org/wiki/{page}'
-            embed = discord.Embed(title = wiki1, description = "上から順に番号選択", url = page_search_url)
+            embed = discord.Embed()
             embed.add_field(name = page, value = '', inline = False)
             await message.channel.send(embed = embed)
             
