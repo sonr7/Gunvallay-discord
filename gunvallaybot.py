@@ -206,9 +206,9 @@ async def on_message(message):
                 embed.add_field(name = page, value = f'「{page}」で再検索', inline = False)
             await message.channel.send(embed = embed)
     if '#wach' in message.content:
-        wiki0, wiki1 = message.content.split()
+        wiki0, wiki1, wiki2 = message.content.split()
         wikipedia.set_lang('ja')
-        page_ach = wikipedia.search(wiki1, results = 11)
+        page_ach = wikipedia.search(wiki1, results = wiki2)
         page_search_url = f'https://ja.wikipedia.org/wiki/{page_ach}'
         embed = discord.Embed()
         for pages in page_ach:
