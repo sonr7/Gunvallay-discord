@@ -190,7 +190,7 @@ async def on_message(message):
     if '#wiki'in message.content:
         wiki0, wiki1 = message.content.split()
         wikipedia.set_lang('ja')
-        page_search = wikipedia.search(wiki1, results = 10)]
+        page_search = wikipedia.search(wiki1, results = 10)
         await message.channel.send(page_search)
         
        
