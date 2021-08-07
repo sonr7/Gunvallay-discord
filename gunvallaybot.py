@@ -196,7 +196,7 @@ async def on_message(message):
             page_url = f'https://ja.wikipedia.org/wiki/{page}'
             embed = discord.Embed()
             embed.add_field(name = page, value = f'{page}へGO！', inline = False)
-            await message.channel.send(embed = embed)
+        await message.channel.send(embed = embed)
             
         
        
