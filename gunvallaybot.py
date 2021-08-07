@@ -195,7 +195,7 @@ async def on_message(message):
         for page in page_search:
             page_url = f'https://ja.wikipedia.org/wiki/{page}'
             embed = discord.Embed()
-            embed.add_field(name = page, value = '\u200', inline = False)
+            embed.add_field(name = page, inline = False)
             await message.channel.send(embed = embed)
             
         
