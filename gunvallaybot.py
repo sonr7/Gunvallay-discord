@@ -10,6 +10,7 @@ from fractions import Fraction
 import datetime
 import time
 import random
+import sys
 import wikipedia
 
 def inverse(f):
