@@ -28,11 +28,10 @@ intents.members = True
 
 client = discord.Client(intents = intents)
 
-guild = message.guild
-
 overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=False), guild.me: discord.PermissionOverwrite(read_messages=True)}
 
 async def create_channel(message, channel_name):
+    guild = message.guild
     category_id = message.channel.category_id
     category = message.guild.get_channel(category_id)
     new_channel = await category.create_text_channel(name = channel_name, overwrites = overwrites)
