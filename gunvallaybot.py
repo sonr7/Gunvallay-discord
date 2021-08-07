@@ -207,6 +207,7 @@ async def on_message(message):
             await message.channel.send(embed = embed)
     if '#wach' in message.content:
         wiki0, wiki1 = message.content.split()
+        wikipedia.set_lang('ja')
         page_ach = wikipedia.search(wiki1, results = 11)
         page_search_url = f'https://ja.wikipedia.org/wiki/{page_ach}'
         embed = discord.Embed()
