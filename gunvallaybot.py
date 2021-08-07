@@ -28,6 +28,12 @@ intents.members = True
 
 client = discord.Client(intents = intents)
 
+async def create_channel(message, channel_name):
+    category_id = message.channel.category_id
+    category = message.guild.get_channel(category_id)
+    new_channel = await category.create_text_channel(name = channel_name)
+    return new_channel
+
 @client.event
 async def on_ready():
     print('起動しました')
@@ -157,6 +163,17 @@ async def on_message(message):
                     embed = discord.Embed(title="BUMPできるよ！",description="BUMPがんばれ👍！",color=0x24B8B8)
                     await message.channel.send(embed=embed)
                     print("send:bump!!!")
+    if message.content.startswith('#ebon'):
+        guild = message.guild
+        ebr_all = guild.member_count
+        ebr_user = sum(1 for member in guild.members if not member.bot)
+        ebr_bot = sum(1 for member in guild.members if member.bot)
+        ebr_alls = f'メンバー数:{ebr_all}'
+        ebr_users = f'人数:{ebr_user}'
+        ebr_bots = f'bot数:{ebr_bot}'
+        new_channel = await create_channel(message, channel_name = ebr_alls)
+        new_channel = await create_channel(message, channel_name = ebr_users)
+        new_channel = await create_channel(message, channel_name = ebr_bots)
                     
                 
      
