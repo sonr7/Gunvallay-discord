@@ -1,2 +1,2 @@
 discord.py[voice]>=1.5.1
-wikipedia.py==1.4.0
+wikipedia==1.4.0
