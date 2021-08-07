@@ -36,6 +36,10 @@ async def create_channel(message, channel_name):
     new_channel = await category.create_text_channel(name = channel_name, overwrites = overwrites)
     return new_channel
 
+async def reply(message):
+    reply = f'{message.author.mention}ん？どうした？'
+    await message.channel.send(reply)
+
 @client.event
 async def on_ready():
     print('起動しました')
@@ -176,19 +180,11 @@ async def on_message(message):
         new_channel = await create_channel(message, channel_name = ebr_alls)
         new_channel = await create_channel(message, channel_name = ebr_users)
         new_channel = await create_channel(message, channel_name = ebr_bots)
-                    
-                
-     
-
-
-            
-
+    if '#fjk' in message.content:
+        await message.channel.send('くぁwせdrftgyふじこlp')
+    if client.user in message.mentions:
+        await reply(message)
         
-        
-        
-@client.event
-async def reply(message):
-    reply = f'{message.author.mention} ん？どした？' 
-    await message.channel.send(reply) 
+                   
 
 client.run(token)
