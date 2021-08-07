@@ -168,9 +168,9 @@ async def on_message(message):
         ebr_all = guild.member_count
         ebr_user = sum(1 for member in guild.members if not member.bot)
         ebr_bot = sum(1 for member in guild.members if member.bot)
-        ebr_alls = f'メンバー数:{ebr_all}'
-        ebr_users = f'人数:{ebr_user}'
-        ebr_bots = f'bot数:{ebr_bot}'
+        ebr_alls = f'メンバー数：{ebr_all}'
+        ebr_users = f'人数：{ebr_user}'
+        ebr_bots = f'bot数：{ebr_bot}'
         new_channel = await create_channel(message, channel_name = ebr_alls)
         new_channel = await create_channel(message, channel_name = ebr_users)
         new_channel = await create_channel(message, channel_name = ebr_bots)
