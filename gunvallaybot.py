@@ -211,7 +211,7 @@ async def on_message(message):
         embed = discord.Embed()
         for pages in page_ach:
             pages_int = page_ach.index(pages)
-            pagespages_url = f'https://ja.wikipedia.org/wiki/{pages}'
+            pages_url = f'https://ja.wikipedia.org/wiki/{pages}'
             embed.add_field(name = pages, value = f'「{pages}」で再検索', inline = False)
         await message.channel.send(embed = embed)
             
