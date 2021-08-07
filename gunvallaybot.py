@@ -190,12 +190,10 @@ async def on_message(message):
     if '#wiki'in message.content:
         wiki0, wiki1 = message.content.split()
         wikipedia.set_lang('ja')
-        page = wikipedia.search(wiki1, results = 10)
-        url_wiki = f'https://ja.wikipedia.org/wiki/{page.title}'
-        embed = discord.Embed(title = wiki1, url = url_wiki)
-        embed.add_field(name = page.title, value = page.summary, inline = False)
-        await message.channel.send(embed = embed)
+        page_search = wikipedia.search(wiki1, results = 10)]
+        await message.channel.send(page_search)
         
+       
                    
 
 client.run(token)
