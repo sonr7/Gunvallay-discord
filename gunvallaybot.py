@@ -190,12 +190,12 @@ async def on_message(message):
     if '#wiki'in message.content:
         wiki0, wiki1 = message.content.split()
         wikipedia.set_lang('ja')
-        page_search = wikipedia.search(wiki1, results = 10)
+        page_search = wikipedia.search(wiki1, results = 11)
         page_search_url = f'https://ja.wikipedia.org/wiki/{page_search}'
         embed = discord.Embed()
         for page in page_search:
             page_url = f'https://ja.wikipedia.org/wiki/{page}'
-            embed.add_field(name = page, value = f'{page}へGO！', inline = False)
+            embed.add_field(name = page, value = f'{page}なら{page_research[page]', inline = False)
         await message.channel.send(embed = embed)
             
         
