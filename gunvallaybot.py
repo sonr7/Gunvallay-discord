@@ -163,7 +163,7 @@ async def on_message(message):
                     embed = discord.Embed(title="BUMPできるよ！",description="BUMPがんばれ👍！",color=0x24B8B8)
                     await message.channel.send(embed=embed)
                     print("send:bump!!!")
-    if message.content.startswith('#ebon'):
+    if message.content.startswith('#ebons'):
         guild = message.guild
         ebr_all = guild.member_count
         ebr_user = sum(1 for member in guild.members if not member.bot)
