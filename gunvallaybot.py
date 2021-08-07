@@ -135,7 +135,7 @@ async def on_message(message):
         embed.add_field(name = "#r x", value = "ルートの値求めてくれるよ！", inline = False)
         embed.add_field(name = "#llt x y z", value = "ルーレットできるよ！（この場合はx,y,z,のどれかが出るよ！", inline = False)
         embed.add_field(name = "#ebr", value = "鯖内のメンバー数、人数、BOT数がわかるよ！", inline = False)
-        embed.add_field(name = "#ebons", value = "鯖内のメンバー数、人数、BOT数がわかるよ！（2回以上やるのはやめてね）", inline = False)
+        embed.add_field(name = "#ebons", value = "鯖内のメンバー数、人数、BOT数がチャンネルに表示されるよ！（2回以上やるのはやめてね）", inline = False)
         await message.channel.send(embed = embed)
     if '#llt' in message.content:
         rlt_list = message.content.split()
