@@ -190,21 +190,22 @@ async def on_message(message):
     if '#wiki'in message.content:
         wiki0, wiki1 = message.content.split()
         wikipedia.set_lang('ja')
-        page_search = wikipedia.search(wiki1, results = 11)
-        page_search_url = f'https://ja.wikipedia.org/wiki/{page_search}'
-        embed = discord.Embed()
-        for page in page_search:
-            page_int = page_search.index(page)
-            page_url = f'https://ja.wikipedia.org/wiki/{page}'
-            embed.add_field(name = page, value = f'{page}なら{page_int}', inline = False)
-        await message.channel.send(embed = embed)
-        if message.content == '1' or message.content == '2' or message.content == '3' or message.content == '4' or message.content == '5' or message.content == '6' or message.content == '7' or message.content == '8' or message.content == '9' or message.content == '10':
-            page_urls = f'https://ja.wikipedia.org/wiki/{page_search[message.content]}'
-            embed = discord.Embed(title = page_search[message.content], url = page_urls)
-            page_naming = wikipedia.page(page_search[message.content])
-            page_summary = wikipedia.summary(page_search[message.content])
-            embed.add_field(name = page_naming, value = page_summary, inline = False)
+        try:
+            page_title = wikipedia.page(wiki1)
+            embed = discord.Embed(title = wiki1, url = f'https://ja.wikipedia.org/wiki/{wiki1}')
+            page_summary = wikipedia.summary(wiki1)
+            embed.add_field(name = page_title, value = page_summary, inline = False)
             await message.channel.send(embed = embed)
+        except wikipedia.exceptions.DisambiguationError:
+            page_search = wikipedia.search(wiki1, results = 11)
+            page_search_url = f'https://ja.wikipedia.org/wiki/{page_search}'
+            embed = discord.Embed()
+            for page in page_search:
+                page_int = page_search.index(page)
+                page_url = f'https://ja.wikipedia.org/wiki/{page}'
+                embed.add_field(name = page, value = f'「{page}」で再検索', inline = False)
+            await message.channel.send(embed = embed)
+            
                                              
                                              
         
