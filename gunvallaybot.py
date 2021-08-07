@@ -202,7 +202,7 @@ async def on_message(message):
             page_urls = f'https://ja.wikipedia.org/wiki/{page_search[page_int]}'
             embed = discord.Embed(title = page_search[page_int], url = page_urls)
             page_naming = wikipedia.page(page_search[page_int])
-            page_summary = wikipedia.summary(page_search[page_int]
+            page_summary = wikipedia.summary(page_search[page_int])
             embed.add_field(name = page_naming, value = page_summary, inline = False)
             await message.channel.send(embed = embed)
                                              
