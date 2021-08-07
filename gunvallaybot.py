@@ -200,11 +200,11 @@ async def on_message(message):
         await message.channel.send(embed = embed)
         if message.content == '1' or message.content == '2' or message.content == '3' or message.content == '4' or message.content == '5' or message.content == '6' or message.content == '7' or message.content == '8' or message.content == '9' or message.content == '10':
             page_urls = f'https://ja.wikipedia.org/wiki/{page_search[page_int]}'
-            embed2 = discord.Embed(title = page_search[page_int], url = page_urls)
+            embed = discord.Embed(title = page_search[page_int], url = page_urls)
             page_naming = wikipedia.page(page_search[page_int])
             page_summary = wikipedia.summary(page_search[page_int]
-            embed2.add_field(name = page_naming, value = page_summary, inline = False)
-            await message.channel.send(embed2 = embed2)
+            embed.add_field(name = page_naming, value = page_summary, inline = False)
+            await message.channel.send(embed = embed)
                                              
                                              
         
