@@ -248,36 +248,14 @@ async def on_message(message):
             embed.add_field(name = pages, value = f'「{pages}」で再検索', inline = False)
         await message.channel.send(embed = embed)
     if message.content == "#hb":
-        embed = discord.Embed(title = 'Hit&Browの遊び方！', description = 'これは相手が考えている4桁の数字を推理して当てるゲームだよ！\n数字と位置があっていたら「Hit」、\n数字があっていても位置が違っていたら「Brow」でカウントするよ！\n最終的に4Hitにしたら勝ちだよ！' )
-        embed.add_field(name = 's', value = 'ゲームを始められるよ！', inline = False)
-        embed.add_field(name = 'c', value = '4桁の数字があってるか確認するよ！', inline = False)
-        embed.add_field(name = 'd', value = 'わからないときに答えが見れるよ！', inline =False)
-        await message.channel.send(embed = embed)
-        if message.content == 's':
-            if message.channel.id in rooms:
-                await message.channel.send('使用中なう！')
-                return
-            rooms[message.channel.id] = Room()
-            await message.channel.send('スタート！')
-        if(message.content[0:1] == 'c') and message.channel.id in rooms:
-            req = message.content[1:]
-            req = req.replace(" ","")
-            if len(req) != 4:
-                await message.channel.send("4桁だよ!")
-                return
-            hit, brow = rooms[message.channel.id].step(req)
-            rooms[message.channel.id].history.append({'request':req, 'hit':hit, 'brow':brow})
-            await message.channel.send('リクエスト：' + req + '\n結果：{}ヒット {}ブロー'.format(hit, brow))
-            if req == rooms[message.channel.id].ans:
-                await message.channel.send('正解！')
-                say = "今までの記録だよ\n質問回数:{}回| 数字 | ヒット | ブロー |\n".format(len(rooms[message.channel.id].history))
-                for i in rooms[message.channel.id].history:
-                    say=say+"| {} |　 {} 　|　 {} 　|\n".format(i["request"],i["hit"],i["brow"])                      
-                await message.channel.send(say)
-                del rooms[message.channel.id]
-        if message.content == 'd' and message.channel.id in rooms:
-            await message.channel.send("ゲーム終了！\n答え："+rooms[message.channel.id].ans)
-            del rooms[message.channel.id]
+        suji = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        random1 = random.choice(suji)
+        suji.remove(random1)
+        random2 = random.choice(suji)
+        suji.remove(random2)
+        random3 = random.choice(suji)
+        suji.remove(random3)
+        await message.channel.send(f'{random1},{random2,{random3})
                             
                             
                         
