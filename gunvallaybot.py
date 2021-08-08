@@ -246,7 +246,7 @@ async def on_message(message):
             pages_url = f'https://ja.wikipedia.org/wiki/{pages}'
             embed.add_field(name = pages, value = f'「{pages}」で再検索', inline = False)
         await message.channel.send(embed = embed)
-    if '#hb' in message.content:
+    if message.content == "#hb":
         await message.channel.send('ルール説明は見る？(y/n)')
         if message.content == 'y':
             embed = discord.Embed(title = 'Hit&Browの遊び方！', description = 'これは相手が考えている4桁の数字を推理して当てるゲームだよ！\n数字と位置があっていたら「Hit」、\n数字があっていても位置が違っていたら「Brow」でカウントするよ！\n最終的に4Hitにしたら勝ちだよ！' )
