@@ -252,6 +252,7 @@ async def on_message(message):
         embed.add_field(name = '#hs', value = 'ゲームを始められるよ！' inline = False)
         embed.add_field(name = '#hc', value = '合ってるかを確認できるよ！', inline = False)
         embed.add_field(name = '#hd', value = 'どうしてもわからないときはこのコマンドでわかるよ！', inline = False)
+        await message.channel.send(embed = embed)
         if message.content == '#hs':
             suji = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
             random1 = random.choice(suji)
