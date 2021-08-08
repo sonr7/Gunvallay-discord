@@ -249,7 +249,7 @@ async def on_message(message):
         await message.channel.send(embed = embed)
     if message.content == "#hb":
         embed = discord.Embed(title = 'hit&browの遊び方！', description = 'これは相手が考えている4桁の数字を推理して当てるゲームだよ！\n数字と位置があっていたら「Hit」、\n数字があっていても位置が違っていたら「Brow」でカウントするよ！\n最終的に4Hitにしたら勝ちだよ！')
-        embed.add_field(name = '#hs', value = 'ゲームを始められるよ！' inline = False)
+        embed.add_field(name = '#hs', value = 'ゲームを始められるよ！', inline = False)
         embed.add_field(name = '#hc', value = '合ってるかを確認できるよ！', inline = False)
         embed.add_field(name = '#hd', value = 'どうしてもわからないときはこのコマンドでわかるよ！', inline = False)
         await message.channel.send(embed = embed)
