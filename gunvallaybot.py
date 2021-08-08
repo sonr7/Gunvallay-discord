@@ -172,7 +172,8 @@ async def on_message(message):
         embed.add_field(name = "#ebr", value = "鯖内のメンバー数、人数、BOT数がわかるよ！", inline = False)
         embed.add_field(name = "#fjk", value = "くぁwせdrftgyふじこlp", inline = False)
         embed.add_field(name = "#wiki", value = "wikiで検索してくれるよ！", inline = False)
-        embed.add_field(name = "#wach x y", value = "wikiでxの検索候補をy個表示してくれるよ！", inline =False)
+        embed.add_field(name = "#wach x y", value = "wikiでxの検索候補をy個表示してくれるよ！", inline = False)
+        embed.add_field(name = "#hb", value = "ヒット&ブローができるよ！（詳しく遊び方にて！）", inline = False)
         await message.channel.send(embed = embed)
     if '#llt' in message.content:
         rlt_list = message.content.split()
@@ -252,7 +253,7 @@ async def on_message(message):
             embed = discord.Embed(title = 'Hit&Browの遊び方！', description = 'これは相手が考えている4桁の数字を推理して当てるゲームだよ！\n数字と位置があっていたら「Hit」、\n数字があっていても位置が違っていたら「Brow」でカウントするよ！\n最終的に4Hitにしたら勝ちだよ！' )
             embed.add_field(name = 's', value = 'ゲームを始められるよ！', inline = False)
             embed.add_field(name = 'c', value = '4桁の数字があってるか確認するよ！', inline = False)
-            embed.add_field(name = '
+            embed.add_field(name = 'd', value = 'わからないときに答えが見れるよ！', inline =False)
             await message.channel.send(embed = embed)
         if message.content == 'n':
             if message.content == 's':
