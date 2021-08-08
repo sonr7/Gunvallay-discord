@@ -248,11 +248,8 @@ async def on_message(message):
             embed.add_field(name = pages, value = f'「{pages}」で再検索', inline = False)
         await message.channel.send(embed = embed)
     if message.content == "#hb":
-        embed = discord.Embed(title = 'hit&browの遊び方！', description = 'これは相手が考えている4桁の数字を推理して当てるゲームだよ！\n数字と位置があっていたら「Hit」、\n数字があっていても位置が違っていたら「Brow」でカウントするよ！\n最終的に4Hitにしたら勝ちだよ！')
-        embed.add_field(name = '#hs', value = 'ゲームを始められるよ！', inline = False)
-        embed.add_field(name = '#hc', value = '合ってるかを確認できるよ！', inline = False)
-        embed.add_field(name = '#hd', value = 'どうしてもわからないときはこのコマンドでわかるよ！', inline = False)
-        await message.channel.send(embed = embed)
+        suji = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        await message.channel.send(suji)
         if message.content == '#hs':
             suji = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
             random1 = random.choice(suji)
