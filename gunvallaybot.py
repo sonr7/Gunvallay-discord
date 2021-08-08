@@ -40,7 +40,35 @@ async def create_channel(message, channel_name):
 async def reply(message):
     reply = f'{message.author.mention}ん？どうした？'
     await message.channel.send(reply)
-
+    
+class Room():
+    def __init__(self, hard = False):
+        self.ans = ""
+        if hard :
+            for i in range(4):
+                self.ans = self.ans + str(random.randrange(0, 10))
+        else:
+            l = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+            random.shuffle(l)
+            for i in range(4):
+                self.ans = self.ans + l[i]
+        
+        self.history = []
+        
+    def step(step, req):
+        brow = 0 
+        hit = 0
+        
+        for index, value in enumerate(req):
+            if self.ans[index] == value:
+                brow += 1
+            elif self.ans.find(value) != -1:
+                hit += 1
+        return hit, brow
+    
+rooms = {0:"example"}
+            
+    
 @client.event
 async def on_ready():
     print('起動しました')
@@ -218,6 +246,50 @@ async def on_message(message):
             pages_url = f'https://ja.wikipedia.org/wiki/{pages}'
             embed.add_field(name = pages, value = f'「{pages}」で再検索', inline = False)
         await message.channel.send(embed = embed)
+    if '#hb' in message.content:
+        await message.channel.send('ルール説明は見る？(y/n)')
+        if message.content == 'y':
+            embed = discord.Embed(title = 'Hit&Browの遊び方！', description = 'これは相手が考えている4桁の数字を推理して当てるゲームだよ！\n数字と位置があっていたら「Hit」、\n数字があっていても位置が違っていたら「Brow」でカウントするよ！\n最終的に4Hitにしたら勝ちだよ！' )
+            embed.add_field(name = 's', value = 'ゲームを始められるよ！', inline = False)
+            embed.add_field(name = 'c', value = '4桁の数字があってるか確認するよ！', inline = False)
+            embed.add_field(name = '
+            await message.channel.send(embed = embed)
+        if message.content == 'n':
+            if message.content == 's':
+                if message.channel.id in rooms:
+                    await message.channel.send('使用中なう！')
+                    return
+                rooms[message.channel.id] = Room()
+                await message.channel.send('スタート！')
+            if(message.content[0:1] == 'c') and message.channel.id in rooms:
+                req = message.content[1:]
+                req = req.replace(" ","")
+                if len(req) != 4:
+                    await message.channel.send("4桁だよ!")
+                    return
+                hit, brow = rooms[message.channel.id].step(req)
+                rooms[message.channel.id].history.append({'request':req, 'hit':hit, 'brow':brow})
+                await message.channel.send('リクエスト：' + req + '\n結果：{}ヒット {}ブロー'.format(hit, brow))
+                if req == rooms[message.channel.id].ans:
+                    await message.channel.send('正解！')
+                    say = '今までの記録だよ\n質問回数:{}回| 数字 | ヒット | ブロー |\n".format(len(rooms[message.channel.id].history))
+                    for i in rooms[message.channel.id].history:
+                        say=say+"| {} |　 {} 　|　 {} 　|\n".format(i["request"],i["hit"],i["brow"])                      
+                    await message.channel.send(say)
+                    del rooms[message.channel.id]
+            if message.content == 'd' and message.channel.id in rooms:
+                await message.channel.send("ゲーム終了！\n答え："+rooms[message.channel.id].ans)
+                del rooms[message.channel.id]
+                            
+                            
+                        
+                                                                                             
+                                               
+            
+
+
+                                               
+        
             
             
                                              
