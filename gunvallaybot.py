@@ -255,7 +255,8 @@ async def on_message(message):
         suji.remove(random2)
         random3 = random.choice(suji)
         suji.remove(random3)
-        await message.channel.send(f'{random1},{random2,{random3}')
+        a = f'{random1},{random2,{random3}'
+        await message.channel.send(a)
                             
                             
                         
