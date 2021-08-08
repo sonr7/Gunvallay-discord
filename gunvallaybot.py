@@ -261,7 +261,7 @@ async def on_message(message):
             suji.remove(random2)
             random3 = random.choice(suji)
             suji.remove(random3)
-            await message.channel.send('ゲームスタート！')
+            hs = await message.channel.send('ゲームスタート！')
             if message.content == '#hd':
                 hd = f'残念！答えは{random1}{random2}{random3}だよ！'
                 await message.channel.send(hd)
