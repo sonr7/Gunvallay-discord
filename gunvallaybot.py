@@ -262,7 +262,7 @@ async def on_message(message):
             await message.channel.send(j)
             if message.content == '#hd':
                 hd = f'残念！答えは{random1}{random2}{random3}だよ！'
-                await message.channel.send(hd)
+                input(hd)
         
         
                             
