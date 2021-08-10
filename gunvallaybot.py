@@ -38,7 +38,7 @@ async def create_channel(message, channel_name):
     return new_channel
 
 async def reply(message):
-    reply = f'{message.author.mention}ん？どうした？'
+    reply = f'{message.author.mention}呼んだ？'
     await message.channel.send(reply)
     
 class Room():
@@ -52,13 +52,10 @@ class Room():
             random.shuffle(l)
             for i in range(4):
                 self.ans = self.ans + l[i]
-        
-        self.history = []
-        
-    def step(step, req):
+        self.history = []  
+    def step(selp, req):
         brow = 0 
         hit = 0
-        
         for index, value in enumerate(req):
             if self.ans[index] == value:
                 brow += 1
@@ -77,6 +74,7 @@ async def on_ready():
 async def on_message(message):
     if message.author.bot:
         return
+    print(message.author.name + "<" + message.content)
     if '。' in message.content:
         return
     if 'いってき' in message.content:
@@ -249,19 +247,42 @@ async def on_message(message):
         await message.channel.send(embed = embed)
     if message.content == "#hb":
         embed = discord.Embed(title = 'Hit&Browの遊び方', description = '相手の思っている数字を推理して当てるゲームだよ！\n数字と場所があってたら「Hit」、\n数字があっていても場所が違っていたら「Brow」でカウントするよ！\n最終的に3Hitにすれば勝ちだよ！')
+        embed.add_field(name = '#hs', value = 'ゲームを始めるよ！', inline = False)
+        embed.add_field(name = '#hc', value = 'あってるか確認するよ！', inline = False)
+        embed.add_field(name = '#hd', value = 'どうしてもわからないときに使ってね！（答えが出るよ）', inline = False)
         await message.channel.send(embed = embed)
-        if message.content == '#hs':
-            suji = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-            random1 = random.choice(suji)
-            suji.remove(random1)
-            random2 = random.choice(suji)
-            suji.remove(random2)
-            random3 = random.choice(suji)
-            suji.remove(random3)
-            await message.channel.send('ゲームスタート！')
-            if message.content == '#hd':
-                hd = f'残念！答えは{random1}{random2}{random3}だよ！'
-                await message.channel.send(hd)
+    if message.content == '#hs':
+        if message.channel.id in rooms:
+            await message.channel.send('使用中なう')
+            return
+        rooms[message.channel.id] = Room()
+        await message.channel.send('スタート！')    
+    if(message.content[0:3]=="#hc") and message.channel.id in rooms:
+        req=message.content[3:]
+        req=req.replace(" ","")
+        if len(req)!=4:
+            await message.channel.send('４桁の番号だよ！')
+            return
+        hit, brow = rooms[message.channel.id].step(req)
+        rooms[message.channel.id].history.append({'request':req, 'hit':hit, 'brow':brow})
+        await message.channel.send('リクエスト：'+ req + '\n結果：{}ヒット {}ブロー'.format(hit, brow))
+        if req == rooms[message.channel.id].ans:
+            await message.channel.send('正解！')
+            say = '今までの記録だよ！\n質問回数：{}回| 数字 | ヒット | ブロー |\n'.format(len(rooms[message.channel.id].history))
+            for i in rooms[message.channel.id].history:
+                say = say + '| {} |  {}  |  {}  |\n'.format(i['request'],i['hit'],i['brow'])
+            await message.channel.send(say)
+            del rooms[message.chanenl.id]
+    if message.content == '#hd' and message.channel.id in rooms:
+        await message.channel.send('ゲーム終了！答え：' + rooms[message.channel.id].ans)
+        del rooms[message.channel.id]
+
+
+        
+
+
+                                   
+                                   
         
         
                             
