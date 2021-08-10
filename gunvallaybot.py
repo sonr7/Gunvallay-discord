@@ -249,7 +249,7 @@ async def on_message(message):
         await message.channel.send(embed = embed)
     if message.content == "#hb":
         embed = discord.Embed(title = 'Hit&Browの遊び方', description = '相手の思っている数字を推理して当てるゲームだよ！\n数字と場所があってたら「Hit」、\n数字があっていても場所が違っていたら「Brow」でカウントするよ！\n最終的に3Hitにすれば勝ちだよ！')
-        print(embed = embed)
+        await message.channel.send(embed = embed)
         if message.content == '#hs':
             suji = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
             random1 = random.choice(suji)
