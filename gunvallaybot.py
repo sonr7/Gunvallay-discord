@@ -279,7 +279,7 @@ async def on_message(message):
     if message.content == '#hy' and message.channel.id in rooms:
         say = '今までの記録だよ！\n質問回数：{}回| 数字 | ヒット |  ブロー |\n'.format(len(rooms[message.channel.id].history))
         for i in rooms[message.channel.id].history:
-            say = say + | {} |  {}  |  {}  |\n'.format(i['request'], i['hit'], i['brow'])
+            say = say + '| {} |  {}  |  {}  |\n'.format(i['request'], i['hit'], i['brow'])
         await message.channel.send(say)
 
 
