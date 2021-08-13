@@ -7,7 +7,11 @@ import math
 from functools import reduce
 from operator import mul
 from fractions import Fraction
+import datetime
 import time
+import random
+import sys
+import wikipedia
 
 def inverse(f):
     return Fraction(f.denominator,f.numerator)
@@ -20,8 +24,48 @@ logging.basicConfig(level=logging.INFO)
 
 token = os.environ.get('DISCORD_BOT_TOKEN')
 
-client = discord.Client()
+intents = discord.Intents.default()
+intents.members = True
 
+client = discord.Client(intents = intents)
+
+async def create_channel(message, channel_name):
+    guild = message.guild
+    overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=False), guild.me: discord.PermissionOverwrite(read_messages=True)}
+    category_id = message.channel.category_id
+    category = message.guild.get_channel(category_id)
+    new_channel = await category.create_text_channel(name = channel_name, overwrites = overwrites)
+    return new_channel
+
+async def reply(message):
+    reply = f'{message.author.mention}呼んだ？'
+    await message.channel.send(reply)
+    
+class Room():
+    def __init__(self, hard = False):
+        self.ans = ""
+        if hard :
+            for i in range(4):
+                self.ans = self.ans + str(random.randrange(0, 10))
+        else:
+            l = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+            random.shuffle(l)
+            for i in range(4):
+                self.ans = self.ans + l[i]
+        self.history = []  
+    def step(selp, req):
+        brow = 0 
+        hit = 0
+        for index, value in enumerate(req):
+            if self.ans[index] == value:
+                brow += 1
+            elif self.ans.find(value) != -1:
+                hit += 1
+        return hit, brow
+    
+rooms = {0:"example"}
+            
+    
 @client.event
 async def on_ready():
     print('起動しました')
@@ -30,6 +74,7 @@ async def on_ready():
 async def on_message(message):
     if message.author.bot:
         return
+    print(message.author.name + "<" + message.content)
     if '。' in message.content:
         return
     if 'いってき' in message.content:
@@ -46,7 +91,7 @@ async def on_message(message):
         await message.channel.send('こんばんは！まだ今日は終わってないぞ！がんばれ👍')
     if 'ただいま' in message.content[0:4]: 
         await message.channel.send('おかえりぃ！頑張れたかい？')
-    if 'がんば' in message.content[0:3] or '頑張' in message.content[0:2]:
+    if 'がんば' in message.content or '頑張' in message.content:
         await message.channel.send('おう！俺も応援するぜ！がんばれ👍！')
     if message.content == '@がんばれ君':
         await message.channel.send('ん？どした？')
@@ -109,14 +154,158 @@ async def on_message(message):
         root2 = math.sqrt(root1)
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
+    if '今何時' in message.content:
+        await message.channel.send(now)
+    if '#help' in message.content:
+        embed = discord.Embed(title = "がんばれ君が助けに来た！")
+        embed.add_field(name = "応答", value = "たまに言葉で反応するときがあるよ！（「。」を使えば黙らせられるよー）", inline = False)
+        embed.add_field(name = "#p x y", value = "足し算できるよ！3個以上の数値もできるよ！（この場合はx+yになるよー）", inline = False)
+        embed.add_field(name = "#m x y", value = "引き算できるよ！3個以上の数値もできるよ！（この場合はx-yになるよー）", inline = False)
+        embed.add_field(name = "#t x y", value = "掛け算できるよ！3個以上の数値もできるよ！（この場合はx×yになるよー）", inline = False)
+        embed.add_field(name = "#d x y", value = "割り算できるよ！3個以上の数値もできるよ！（この場合はx÷yになるよー）", inline = False)
+        embed.add_field(name = "#o x y", value = "割り算あまりできるよ！", inline = False)
+        embed.add_field(name = "#s x y", value = "累乗できるよ！（この場合はxのy乗になるよー）", inline = False)
+        embed.add_field(name = "#r x", value = "ルートの値求めてくれるよ！", inline = False)
+        embed.add_field(name = "#llt x y z", value = "ルーレットできるよ！（この場合はx,y,z,のどれかが出るよ！", inline = False)
+        embed.add_field(name = "#ebr", value = "鯖内のメンバー数、人数、BOT数がわかるよ！", inline = False)
+        embed.add_field(name = "#fjk", value = "くぁwせdrftgyふじこlp", inline = False)
+        embed.add_field(name = "#wiki", value = "wikiで検索してくれるよ！", inline = False)
+        embed.add_field(name = "#wach x y", value = "wikiでxの検索候補をy個表示してくれるよ！", inline = False)
+        embed.add_field(name = "#hb", value = "ヒット&ブローができるよ！（詳しく遊び方にて！）", inline = False)
+        await message.channel.send(embed = embed)
+    if '#llt' in message.content:
+        rlt_list = message.content.split()
+        rlt_list.remove('#llt')
+        rlt_result = random.choice(rlt_list)
+        await message.channel.send(rlt_result)
+    if '#ebr' in message.content:
+        guild = message.guild
+        ebr_all = guild.member_count
+        ebr_user = sum(1 for member in guild.members if not member.bot)
+        ebr_bot = sum(1 for member in guild.members if member.bot)
+        ebr = f'メンバー数:{ebr_all}　人数:{ebr_user}　bot数:{ebr_bot}'
+        await message.channel.send(ebr)
     if '!d bump' in message.content:
-        time.sleep(2)
-        await message.channel.send('bumpの時間だ！bumpがんばれ👍')
+        if message.content.startswith("!d bump"):
+            if client.user!=message.author:
+                def checks(m):
+                    return m.channel == message.channel and m.author.id==302050872383242240
+                bp=await client.wait_for('message', check=checks, timeout=15)
+                msgid=bp.id
+                embmsg=await message.channel.fetch_message(msgid)
+                bumpdata="EmbedProxy(url='https://disboard.org/images/bot-command-image-bump.png', proxy_url='https://images-ext-1.discordapp.net/external/tAuRcs-FCy2M8OaTS9Ims62J1vrFiviahjBDtpZrrBs/https/disboard.org/images/bot-command-image-bump.png', width=800, height=200)"
+                getdata=embmsg.embeds[0].image
+                if str(bumpdata)==str(getdata):
+                    await asyncio.sleep(7200)
+                    embed = discord.Embed(title="BUMPできるよ！",description="BUMPがんばれ👍！",color=0x24B8B8)
+                    await message.channel.send(embed=embed)
+                    print("send:bump!!!")
+    if message.content.startswith('#ebons'):
+        guild = message.guild
+        ebr_all = guild.member_count
+        ebr_user = sum(1 for member in guild.members if not member.bot)
+        ebr_bot = sum(1 for member in guild.members if member.bot)
+        ebr_alls = f'メンバー数：{ebr_all}'
+        ebr_users = f'人数：{ebr_user}'
+        ebr_bots = f'bot数：{ebr_bot}'
+        new_channel = await create_channel(message, channel_name = ebr_alls)
+        new_channel = await create_channel(message, channel_name = ebr_users)
+        new_channel = await create_channel(message, channel_name = ebr_bots)
+    if '#fjk' in message.content:
+        await message.channel.send('くぁwせdrftgyふじこlp')
+    if client.user in message.mentions:
+        await reply(message)
+    if '#wiki'in message.content:
+        wiki0, wiki1 = message.content.split()
+        wikipedia.set_lang('ja')
+        try:
+            page_title = wikipedia.page(wiki1)
+            embed = discord.Embed(title = wiki1, url = f'https://ja.wikipedia.org/wiki/{wiki1}')
+            page_summary = wikipedia.summary(wiki1)
+            embed.add_field(name = page_title, value = page_summary, inline = False)
+            await message.channel.send(embed = embed)
+        except wikipedia.exceptions.DisambiguationError:
+            page_search = wikipedia.search(wiki1, results = 11)
+            page_search_url = f'https://ja.wikipedia.org/wiki/{page_search}'
+            embed = discord.Embed()
+            for page in page_search:
+                page_int = page_search.index(page)
+                page_url = f'https://ja.wikipedia.org/wiki/{page}'
+                embed.add_field(name = page, value = f'「{page}」で再検索', inline = False)
+            await message.channel.send(embed = embed)
+    if '#wach' in message.content:
+        wiki0, wiki1, wiki2 = message.content.split()
+        wikipedia.set_lang('ja')
+        wiki22 = int(wiki2) + 1
+        page_ach = wikipedia.search(wiki1, results = wiki22)
+        page_search_url = f'https://ja.wikipedia.org/wiki/{page_ach}'
+        embed = discord.Embed()
+        for pages in page_ach:
+            pages_int = page_ach.index(pages)
+            pages_url = f'https://ja.wikipedia.org/wiki/{pages}'
+            embed.add_field(name = pages, value = f'「{pages}」で再検索', inline = False)
+        await message.channel.send(embed = embed)
+    if message.content == "#hb":
+        embed = discord.Embed(title = 'Hit&Browの遊び方', description = '相手の思っている数字を推理して当てるゲームだよ！\n数字と場所があってたら「Hit」、\n数字があっていても場所が違っていたら「Brow」でカウントするよ！\n最終的に3Hitにすれば勝ちだよ！')
+        embed.add_field(name = '#hs', value = 'ゲームを始めるよ！', inline = False)
+        embed.add_field(name = '#hc', value = 'あってるか確認するよ！', inline = False)
+        embed.add_field(name = '#hd', value = 'どうしてもわからないときに使ってね！（答えが出るよ）', inline = False)
+        await message.channel.send(embed = embed)
+    if message.content == '#hs':
+        if message.channel.id in rooms:
+            await message.channel.send('使用中なう')
+            return
+        rooms[message.channel.id] = Room()
+        await message.channel.send('スタート！')    
+    if(message.content[0:3]=="#hc") and message.channel.id in rooms:
+        req=message.content[3:]
+        req=req.replace(" ","")
+        if len(req)!=4:
+            await message.channel.send('４桁の番号だよ！')
+            return
+        hit, brow = rooms[message.channel.id].step(req)
+        rooms[message.channel.id].history.append({'request':req, 'hit':hit, 'brow':brow})
+        await message.channel.send('リクエスト：'+ req + '\n結果：{}ヒット {}ブロー'.format(hit, brow))
+        if req == rooms[message.channel.id].ans:
+            await message.channel.send('正解！')
+            say = '今までの記録だよ！\n質問回数：{}回| 数字 | ヒット | ブロー |\n'.format(len(rooms[message.channel.id].history))
+            for i in rooms[message.channel.id].history:
+                say = say + '| {} |  {}  |  {}  |\n'.format(i['request'],i['hit'],i['brow'])
+            await message.channel.send(say)
+            del rooms[message.chanenl.id]
+    if message.content == '#hd' and message.channel.id in rooms:
+        await message.channel.send('ゲーム終了！答え：' + rooms[message.channel.id].ans)
+        del rooms[message.channel.id]
+    if message.content == '#hy' and message.channel.id in rooms:
+        say = '今までの記録だよ！\n質問回数：{}回| 数字 | ヒット |  ブロー |\n'.format(len(rooms[message.channel.id].history))
+        for i in rooms[message.channel.id].history:
+            say = say + | {} |  {}  |  {}  |\n'.format(i['request'], i['hit'], i['brow'])
+        await message.channel.send(say)
+
+
+        
+
+
+                                   
+                                   
         
         
-@client.event
-async def reply(message):
-    reply = f'{message.author.mention} ん？どした？' 
-    await message.channel.send(reply) 
+                            
+                            
+                        
+                                                                                             
+                                               
+            
+
+
+                                               
+        
+            
+            
+                                             
+                                             
+        
+       
+                   
 
 client.run(token)
