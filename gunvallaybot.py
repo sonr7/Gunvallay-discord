@@ -229,7 +229,7 @@ async def on_message(message):
         await message.channel.send('くぁwせdrftgyふじこlp')
     if client.user in message.mentions:
         await reply(message)
-    if '#timer' in message.content:
+    if '#zikan' in message.content:
         timer0, timer1 = message.content.split()
         timer2 = int(timer1)
         await asyncio.sleep(timer2)
