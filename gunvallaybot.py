@@ -43,6 +43,10 @@ async def reply(message):
     reply = f'{message.author.mention}呼んだ？'
     await message.channel.send(reply)
     
+async def time(message):
+    timer = f'{message.author.mention}時間だよ！'
+    await message.channel.send(timer)
+    
 async def NG(message):
     NG0, NG1 = message.content.split()
     with open('NG', 'a') as l:
@@ -225,6 +229,11 @@ async def on_message(message):
         await message.channel.send('くぁwせdrftgyふじこlp')
     if client.user in message.mentions:
         await reply(message)
+    if '#timer' in message.content:
+        timer0, timer1 = message.content.split()
+        timer2 = int(timer1)
+        await asyncio.sleep(timer2)
+        await timer(message)
     if '#wiki'in message.content:
         wiki0, wiki1 = message.content.split()
         wikipedia.set_lang('ja')
