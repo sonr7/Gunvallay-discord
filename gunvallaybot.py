@@ -45,7 +45,7 @@ async def reply(message):
     
 async def NG(message):
     NG0, NG1 = message.content.split()
-    with open('NG', 'w') as l:
+    with open('NG', 'a') as l:
         kaki = f'{NG1}\n'
         l.write(kaki)
     g = f'「{NG1}」を追加しました'
