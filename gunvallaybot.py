@@ -232,8 +232,10 @@ async def on_message(message):
     if '#zikan' in message.content:
         timer0, timer1 = message.content.split()
         timer2 = int(timer1)
+        f = f'{time1}杪間待つのだ！'
+        await message.channel.send(f)
         await asyncio.sleep(timer2)
-        await timer(message)
+        await time(message)
     if '#wiki'in message.content:
         wiki0, wiki1 = message.content.split()
         wikipedia.set_lang('ja')
