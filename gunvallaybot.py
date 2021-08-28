@@ -243,6 +243,11 @@ async def on_message(message):
             await message.channel.send(embed = embed)
     if '#ngadd' in message.content:
         await NG(message)
+    if '#nglist' in message.content:
+        embed = discord.Embed(title = 'NGワード一覧', description = 'このリスト内のワードは言っちゃだめだよ！')
+        for f in NG_list:
+            embed.add_field(name = f, value = f, inline = False)
+        await message.channel.send(embed = embed)
     if '#wach' in message.content:
         wiki0, wiki1, wiki2 = message.content.split()
         wikipedia.set_lang('ja')
