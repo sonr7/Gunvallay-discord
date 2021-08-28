@@ -45,7 +45,9 @@ async def reply(message):
     
 async def NG(message):
     NG0, NG1 = message.content.split()
-    NG_list.append(NG1)
+    with open('NG', 'w') as l:
+        kaki = f'{NG1}\n'
+        l.write(kaki)
     g = f'「{NG1}」を追加しました'
     await message.channel.send(g)
     
@@ -245,7 +247,10 @@ async def on_message(message):
         await NG(message)
     if '#nglist' in message.content:
         embed = discord.Embed(title = 'NGワード一覧', description = 'このリスト内のワードは言っちゃだめだよ！')
-        for f in NG_list:
+        with open('NG') as ng:
+            ngl = ng.read()
+        fs = ngl.splitlines()
+        for f in fs:
             embed.add_field(name = f, value = f, inline = False)
         await message.channel.send(embed = embed)
     if '#wach' in message.content:
