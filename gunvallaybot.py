@@ -41,6 +41,12 @@ async def reply(message):
     reply = f'{message.author.mention}呼んだ？'
     await message.channel.send(reply)
     
+async def NG(message):
+    NG0, NG1 = message.content.split()
+    NG_list.append(NG1)
+    g = f'{NG1}を追加しました'
+    await message.channel.send(g)
+    
 class Room():
     def __init__(self, hard = False):
         self.ans = ""
@@ -233,6 +239,8 @@ async def on_message(message):
                 page_url = f'https://ja.wikipedia.org/wiki/{page}'
                 embed.add_field(name = page, value = f'「{page}」で再検索', inline = False)
             await message.channel.send(embed = embed)
+    if '#ngadd' in message.content:
+        await NG(message)
     if '#wach' in message.content:
         wiki0, wiki1, wiki2 = message.content.split()
         wikipedia.set_lang('ja')
