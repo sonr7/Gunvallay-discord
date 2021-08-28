@@ -46,7 +46,7 @@ async def reply(message):
 async def NG(message):
     NG0, NG1 = message.content.split()
     NG_list.append(NG1)
-    g = f'{NG1}を追加しました'
+    g = f'「{NG1}」を追加しました'
     await message.channel.send(g)
     
 class Room():
