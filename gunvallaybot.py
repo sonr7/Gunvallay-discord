@@ -24,6 +24,8 @@ logging.basicConfig(level=logging.INFO)
 
 token = os.environ.get('DISCORD_BOT_TOKEN')
 
+NG_list = []
+
 intents = discord.Intents.default()
 intents.members = True
 
