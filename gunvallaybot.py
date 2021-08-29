@@ -38,6 +38,9 @@ intents.members = True
 
 client = discord.Client(intents = intents)
 
+X = datetime.now().strftime('%H')
+Xint = int(X)
+NK = f'今は%Y年%m月%d日{Xint}:%Mだぜ！'
 now = datetime.now().strftime('今は%Y年%m月%d日%H:%Mだぜ！')
 
 async def create_channel(message, channel_name):
