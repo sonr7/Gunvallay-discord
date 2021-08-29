@@ -8,7 +8,7 @@ import math
 from functools import reduce
 from operator import mul
 from fractions import Fraction
-import datetime
+from datetime import datetime
 import time
 import random
 import sys
