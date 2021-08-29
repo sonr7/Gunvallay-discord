@@ -39,7 +39,7 @@ intents.members = True
 client = discord.Client(intents = intents)
 
 X = datetime.now().strftime('%H')
-Xint = int(X)
+Xint = int(X) + 9
 NK = f'今は%Y年%m月%d日{Xint}:%Mだぜ！'
 now = datetime.now().strftime(NK)
 
