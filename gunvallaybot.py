@@ -38,6 +38,8 @@ intents.members = True
 
 client = discord.Client(intents = intents)
 
+now = datetime.now().strftime('今は%Y年%m月%d日%H:%Mだぜ！')
+
 async def create_channel(message, channel_name):
     guild = message.guild
     overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=False), guild.me: discord.PermissionOverwrite(read_messages=True)}
@@ -94,9 +96,10 @@ async def on_ready():
 @tasks.loop(seconds = 60)
 async def loop():
     ziho = datetime.now().strftime('%H:%M')
-    if ziho == '21:45':
+    if ziho == '00:00':
         channel = client.get_channel(zikkenmain)
-        await channel.send('2136')
+        await channel.send('じほ')
+    
     
 @client.event
 async def on_message(message):
@@ -182,7 +185,7 @@ async def on_message(message):
         root2 = math.sqrt(root1)
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
-    if '今何時' in message.content:
+    if '#now' in message.content:
         await message.channel.send(now)
     if '#help' in message.content:
         embed = discord.Embed(title = "がんばれ君が助けに来た！")
