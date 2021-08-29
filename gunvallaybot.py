@@ -98,8 +98,10 @@ async def on_ready():
     
 @tasks.loop(seconds = 60)
 async def loop():
-    ziho = datetime.now().strftime('%H:%M')
-    if ziho == '00:00':
+    zihox = datetime.now().strftime('%H')
+    intziho = int(zihox) + 9
+    ziho = f'{intziho}:%M'
+    if ziho == '22:16':
         channel = client.get_channel(zikkenmain)
         await channel.send('じほ')
     
