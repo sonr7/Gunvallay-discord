@@ -13,6 +13,12 @@ import random
 import sys
 import wikipedia
 
+kouyatitai = '790254976198115380'
+
+main = '774933645001621545'
+
+zikkenmain = '795957183988629546'
+
 def inverse(f):
     return Fraction(f.denominator,f.numerator)
 
@@ -83,7 +89,14 @@ rooms = {0:"example"}
 @client.event
 async def on_ready():
     print('起動しました')
-
+    
+@tasks.loop(seconds = 60)
+async def loop():
+    ziho = datetime.now().strftime('%H:%M')
+    if ziho == '21:36':
+        channel = client.get_channel(zikkenmain)
+        await channel.send('2136')
+    
 @client.event
 async def on_message(message):
     if message.author.bot:
