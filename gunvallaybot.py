@@ -109,7 +109,7 @@ async def loop():
     
 @client.event
 async def on_member_join(member):
-    channel = discord.utils.get(guild.text_channels, name = 'エントランス')
+    channel = guild.get_channel('774679471809626124')
     await channel.send('よろしく！')
      
 @client.event
