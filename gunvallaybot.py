@@ -107,7 +107,8 @@ async def loop():
     
 @client.event
 async def on_member_join(member):
-    await send('よろしく！')
+    channel = discord.utils.get(guild.text_channels, name = 'メイン雑談')
+    await channel.send('よろしく！')
      
 @client.event
 async def on_message(message):
