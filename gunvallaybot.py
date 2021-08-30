@@ -107,7 +107,7 @@ async def loop():
     
 @client.event
 async def on_member_join(member):
-    await channel.send('よろしく！')
+    await send('よろしく！')
      
 @client.event
 async def on_message(message):
