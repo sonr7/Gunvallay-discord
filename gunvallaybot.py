@@ -38,6 +38,8 @@ intents.members = True
 
 client = discord.Client(intents = intents)
 
+guild = client.get_guild('774679471243788339')
+
 X = datetime.now().strftime('%H')
 Xint = int(X) + 9
 NK = f'今は%Y年%m月%d日{Xint}:%Mだぜ！'
@@ -107,7 +109,7 @@ async def loop():
     
 @client.event
 async def on_member_join(member):
-    channel = discord.utils.get(guild.text_channels, name = 'メイン雑談')
+    channel = discord.utils.get(guild.text_channels, name = 'エントランス')
     await channel.send('よろしく！')
      
 @client.event
