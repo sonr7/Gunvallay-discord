@@ -105,7 +105,10 @@ async def loop():
         channel = client.get_channel(zikkenmain)
         await channel.send('じほ')
     
-    
+@client.event
+async def on_member_join():
+    await message.channel.send('よろしく！')
+     
 @client.event
 async def on_message(message):
     if message.author.bot:
