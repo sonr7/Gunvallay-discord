@@ -38,8 +38,6 @@ intents.members = True
 
 client = discord.Client(intents = intents)
 
-guild = client.get_guild('774679471243788339')
-
 X = datetime.now().strftime('%H')
 Xint = int(X) + 9
 NK = f'今は%Y年%m月%d日{Xint}:%Mだぜ！'
