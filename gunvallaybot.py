@@ -109,6 +109,7 @@ async def loop():
     
 @client.event
 async def on_member_join(member):
+    guild = member.guild
     channel = guild.get_channel('774679471809626124')
     await channel.send('よろしく！')
      
@@ -221,12 +222,15 @@ async def on_message(message):
         rlt_result = random.choice(rlt_list)
         await message.channel.send(rlt_result)
     if '#ebr' in message.content:
+        embed = discord.Embed(title = 'みんはや鯖メンバー')
         guild = message.guild
         ebr_all = guild.member_count
         ebr_user = sum(1 for member in guild.members if not member.bot)
         ebr_bot = sum(1 for member in guild.members if member.bot)
-        ebr = f'メンバー数:{ebr_all}　人数:{ebr_user}　bot数:{ebr_bot}'
-        await message.channel.send(ebr)
+        embed.add_field(name = 'メンバー数', value = ebr_all)
+        embed.add_field(name = '人数', value = ebr_user)
+        embed.add_field(name = 'bot数', value = ebr_bot)
+        await message.channel.send(embed = embed)
     if '!d bump' in message.content:
         if message.content.startswith("!d bump"):
             if client.user!=message.author:
