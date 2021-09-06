@@ -140,13 +140,13 @@ async def on_message(message):
         await message.channel.send('よく頑張った！今後もがんばれ👍')
     if 'ハハッ' in message.content or 'ﾊﾊｯ' in message.content or 'ははっ' in message.content or 'はハッ' in message.content or 'はハっ' in message.content or 'ははッ' in message.content or 'ハはっ' in message.content or 'ハはッ' in message.content or 'ハハっ' in message.content:
         await message.channel.send('(ミッキーだよ)')
-    if '#p' in message.content:
+    if '#plus' in message.content:
         plus_list_str = message.content.split()
         plus_list_str.remove('#p')
         plus_list = map(float, plus_list_str)
         plus = sum(plus_list)
         await message.channel.send(plus)
-    if '#m' in message.content:
+    if '#minus' in message.content:
         minus_list2_str = message.content.split()
         minus_list2_str.remove('#m')
         minus11 = float(minus_list2_str[0])
@@ -158,13 +158,13 @@ async def on_message(message):
         minus2 = Decimal(minus22)
         minus = minus1 + minus2
         await message.channel.send(minus)
-    if '#t' in message.content:
+    if '#time' in message.content:
         time_list_str = message.content.split()
         time_list_str.remove('#t')
         time_list = map(float, time_list_str)
         time = reduce(mul, time_list)
         await message.channel.send(time)
-    if '#d' in message.content:
+    if '#divide' in message.content:
         divide_list_str = message.content.split()
         divide_list_str.remove('#d')
         divide11_str = divide_list_str[0]
@@ -175,7 +175,7 @@ async def on_message(message):
         divide2 = Decimal(divide22)
         divide = (divide1 / divide2) * divide1
         await message.channel.send(divide)
-    if '#o' in message.content:
+    if '#oio' in message.content:
         oio0, oio1_str, oio2_str = message.content.split( )
         oio1 = float(oio1_str)
         oio2 = float(oio2_str)
@@ -183,13 +183,13 @@ async def on_message(message):
         ii = oio1 // oio2
         iioio = f'{ii}あまり{oio}'
         await message.channel.send(iioio)
-    if '#s' in message.content:
+    if '#square' in message.content:
         square0, square1_str, square2_str = message.content.split()
         square1 = float(square1_str)
         square2 = float(square2_str)
         square = square1 ** square2
         await message.channel.send(square)
-    if '#r' in message.content:
+    if '#root' in message.content:
         root0, root1_str = message.content.split()
         root1 = float(root1_str)
         root2 = math.sqrt(root1)
@@ -200,19 +200,18 @@ async def on_message(message):
     if '#help' in message.content:
         embed = discord.Embed(title = "がんばれ君が助けに来た！")
         embed.add_field(name = "応答", value = "たまに言葉で反応するときがあるよ！（「。」を使えば黙らせられるよー）", inline = False)
-        embed.add_field(name = "#p x y", value = "足し算できるよ！3個以上の数値もできるよ！（この場合はx+yになるよー）", inline = False)
-        embed.add_field(name = "#m x y", value = "引き算できるよ！3個以上の数値もできるよ！（この場合はx-yになるよー）", inline = False)
-        embed.add_field(name = "#t x y", value = "掛け算できるよ！3個以上の数値もできるよ！（この場合はx×yになるよー）", inline = False)
-        embed.add_field(name = "#d x y", value = "割り算できるよ！3個以上の数値もできるよ！（この場合はx÷yになるよー）", inline = False)
-        embed.add_field(name = "#o x y", value = "割り算あまりできるよ！", inline = False)
-        embed.add_field(name = "#s x y", value = "累乗できるよ！（この場合はxのy乗になるよー）", inline = False)
-        embed.add_field(name = "#r x", value = "ルートの値求めてくれるよ！", inline = False)
+        embed.add_field(name = "#plus x y", value = "足し算できるよ！3個以上の数値もできるよ！（この場合はx+yになるよー）", inline = False)
+        embed.add_field(name = "#minus x y", value = "引き算できるよ！3個以上の数値もできるよ！（この場合はx-yになるよー）", inline = False)
+        embed.add_field(name = "#time x y", value = "掛け算できるよ！3個以上の数値もできるよ！（この場合はx×yになるよー）", inline = False)
+        embed.add_field(name = "#divide x y", value = "割り算できるよ！3個以上の数値もできるよ！（この場合はx÷yになるよー）", inline = False)
+        embed.add_field(name = "#oio x y", value = "割り算あまりできるよ！", inline = False)
+        embed.add_field(name = "#square x y", value = "累乗できるよ！（この場合はxのy乗になるよー）", inline = False)
+        embed.add_field(name = "#root x", value = "ルートの値求めてくれるよ！", inline = False)
         embed.add_field(name = "#llt x y z", value = "ルーレットできるよ！（この場合はx,y,z,のどれかが出るよ！", inline = False)
         embed.add_field(name = "#ebr", value = "鯖内のメンバー数、人数、BOT数がわかるよ！", inline = False)
         embed.add_field(name = "#fjk", value = "くぁwせdrftgyふじこlp", inline = False)
         embed.add_field(name = "#wiki", value = "wikiで検索してくれるよ！", inline = False)
         embed.add_field(name = "#wach x y", value = "wikiでxの検索候補をy個表示してくれるよ！", inline = False)
-        embed.add_field(name = "#hb", value = "ヒット&ブローができるよ！（詳しく遊び方にて！）", inline = False)
         await message.channel.send(embed = embed)
     if '#llt' in message.content:
         rlt_list = message.content.split()
@@ -244,6 +243,12 @@ async def on_message(message):
                     embed = discord.Embed(title="BUMPできるよ！",description="BUMPがんばれ👍！",color=0x24B8B8)
                     await message.channel.send(embed=embed)
                     print("send:bump!!!")
+    if '#ranks' in message.content:
+        embed = discord.Embed(title = 'ランクごとの人数！')
+        guild = message.guild
+        role_S2 = guild.get_role(774989846501654528)
+        embed.add_field(name = 'S2ランク', value = len(role_S2.members), inline = False)
+        await message.channel.send(embed = embed)
     if message.content.startswith('#ebons'):
         guild = message.guild
         ebr_all = guild.member_count
