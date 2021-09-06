@@ -108,7 +108,7 @@ async def loop():
 @client.event
 async def on_member_join(member):
     guild = member.guild
-    channel = guild.get_channel('774679471809626124')
+    channel = guild.get_channel(774679471809626124)
     await channel.send('よろしく！')
      
 @client.event
@@ -248,6 +248,28 @@ async def on_message(message):
         guild = message.guild
         role_S2 = guild.get_role(774989846501654528)
         embed.add_field(name = 'S2ランク', value = len(role_S2.members), inline = False)
+        role_S1 = guild.get_role(774987289045630997)
+        embed.add_field(name = 'S1ランク', value = len(role_S1.members), inline = False)
+        role_S = guild.get_role(774989364199424010)
+        embed.add_field(name = 'Sランク', value = len(role_S.members), inline = False)
+        role_Ap = guild.get_role(774988208895033425)
+        embed.add_field(name = 'A+ランク', value = len(role_Ap.members), inline = False)
+        role_A = guild.get_role(774987300420583475)
+        embed.add_field(name = 'Aランク', value = len(role_A.members), inline = False)
+        role_Am = guild.get_role(774988863378030603)
+        embed.add_field(name = 'A-ランク', value = len(role_Am.members), inline = False)
+        role_Bp = guild.get_role(774988447676235797)
+        embed.add_field(name = 'B+ランク', value = len(role_Bp.members), inline = False)
+        role_B = guild.get_role(774988378596835339)
+        embed.add_field(name = 'Bランク', value = len(role_B.members), inline = False)
+        role_Bm = guild.get_role(774988334509326337)
+        embed.add_field(name = 'B-ランク', value = len(role_Bm.members), inline = False)
+        role_Cp = guild.get_role(774988120100700211)
+        embed.add_field(name = 'C+ランク', value = len(role_Cp.members), inline = False)
+        role_C = guild.get_role(774988030590058526)
+        embed.add_field(name = 'Cランク', value = len(role_C.members), inline = False)
+        role_Cm = guild.get_role(774987915004477470)
+        embed.add_field(name = 'C-ランク', value = len(role_Cm.members), inline = False)
         await message.channel.send(embed = embed)
     if message.content.startswith('#ebons'):
         guild = message.guild
