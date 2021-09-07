@@ -204,7 +204,7 @@ async def on_message(message):
         embed.add_field(name = "**#div x y**", value = "割り算できるよ！3個以上の数値もできるよ！（この場合はx÷yになるよー）", inline = False)
         embed.add_field(name = "**#oio x y**", value = "割り算あまりできるよ！", inline = False)
         embed.add_field(name = "**#sqr x y**", value = "累乗できるよ！（この場合はxのy乗になるよー）", inline = False)
-        embed.add_field(name = "**#rot x"**, value = "ルートの値求めてくれるよ！", inline = False)
+        embed.add_field(name = "**#rot x**", value = "ルートの値求めてくれるよ！", inline = False)
         embed.add_field(name = "**#llt x y z**", value = "ルーレットできるよ！（この場合はx,y,z,のどれかが出るよ！", inline = False)
         embed.add_field(name = "**#ebr**", value = "鯖内のメンバー数、人数、BOT数がわかるよ！", inline = False)
         embed.add_field(name = "**#fjk**", value = "くぁwせdrftgyふじこlp", inline = False)
