@@ -113,8 +113,6 @@ async def on_member_join(member):
      
 @client.event
 async def on_message(message):
-    if message.author.bot:
-        return
     print(message.author.name + "<" + message.content)
     if '。' in message.content:
         return
