@@ -334,7 +334,7 @@ async def on_message(message):
             pages_url = f'https://ja.wikipedia.org/wiki/{pages}'
             embed.add_field(name = pages, value = f'「{pages}」で再検索', inline = False)
         await message.channel.send(embed = embed)
-    if message.channel_id = 774680339481231441:
+    if '【名前】' in message.content:
         yorosiku = "<:yorosiku:884506700126752828>"
         ok = "<:OK:884506700126752828>
         await message.add_reaction(yorosiku)
