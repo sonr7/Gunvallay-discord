@@ -336,7 +336,7 @@ async def on_message(message):
         await message.channel.send(embed = embed)
     if '【名前】' in message.content:
         yorosiku = "<:yorosiku:884506700126752828>"
-        ok = "<:OK:884506700126752828>
+        ok = "<:OK:884506700126752828>"
         await message.add_reaction(yorosiku)
         await message.add_reaction(ok)
     if message.content == "#hb":
