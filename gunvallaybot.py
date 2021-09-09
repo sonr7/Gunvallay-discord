@@ -104,14 +104,12 @@ async def loop():
     if ziho == '22:16':
         channel = client.get_channel(zikkenmain)
         await channel.send('じほ')
-    
+     
 @client.event
 async def on_member_join(member):
     guild = member.guild
     channel = guild.get_channel(774679471809626124)
     await channel.send('よろしく！')
-     
-@client.event
 async def on_message(message):
     print(message.author.name + "<" + message.content)
     if message.author.bot:
