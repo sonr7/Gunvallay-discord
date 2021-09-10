@@ -88,6 +88,11 @@ class Room():
         return hit, brow
     
 rooms = {0:"example"}
+
+async def on_member_join(member):
+    guild = member.guild
+    channel = guild.get_channel(774679471809626124)
+    await client.send_message(channel, 'よろしく！')
             
     
 @client.event
@@ -112,10 +117,6 @@ async def time():
         await client.send_message(channel, 'じほ')
      
 @client.event
-async def on_member_join(member):
-    guild = member.guild
-    channel = guild.get_channel(774679471809626124)
-    await client.send_message(channel, 'よろしく！')
 async def on_message(message):
     print(message.author.name + "<" + message.content)
     if message.author.bot:
