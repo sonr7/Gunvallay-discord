@@ -31,8 +31,6 @@ logging.basicConfig(level=logging.INFO)
 
 token = os.environ.get('DISCORD_BOT_TOKEN')
 
-NG_list = []
-
 intents = discord.Intents.default()
 intents.members = True
 
@@ -106,10 +104,15 @@ async def loop():
         await channel.send('じほ')
      
 @client.event
+async def time():
+    if datetime.now().strftime('%H:%M') = '15:00':
+        guild = client.get_guild(774679471243788339)
+        channel = guild.get_channel(774933645001621545)
+        await client.send_message(channel, 'じほ')
 async def on_member_join(member):
     guild = member.guild
     channel = guild.get_channel(774679471809626124)
-    await channel.send('よろしく！')
+    await client.send_message(channel, 'よろしく！')
 async def on_message(message):
     print(message.author.name + "<" + message.content)
     if message.author.bot:
