@@ -56,7 +56,7 @@ async def reply(message):
 async def zikan(message):
     timer0, timer1 = message.content.split()
     timers = int(timer1)
-    asyncio.sleep(timers)
+    await asyncio.sleep(timers)
     timer = f'{message.author.mention}時間だよ！'
     await message.channel.send(timer)
     
