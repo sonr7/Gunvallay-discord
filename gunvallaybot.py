@@ -54,6 +54,9 @@ async def reply(message):
     await message.channel.send(reply)
     
 async def time(message):
+    timer0, timer1 = message.content.split()
+    timers = int(timer1)
+    asyncio.sleep(timers)
     timer = f'{message.author.mention}時間だよ！'
     await message.channel.send(timer)
     
@@ -292,11 +295,6 @@ async def on_message(message):
     if client.user in message.mentions:
         await reply(message)
     if '#zikan' in message.content:
-        timer0, timer1 = message.content.split()
-        timer2 = int(timer1)
-        f = f'stay...'
-        await message.channel.send(f)
-        await asyncio.sleep(timer2)
         await time(message)
     if '#wiki'in message.content:
         wiki0, wiki1 = message.content.split()
