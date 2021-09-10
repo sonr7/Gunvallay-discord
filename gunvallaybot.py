@@ -380,6 +380,11 @@ async def on_message(message):
         for i in rooms[message.channel.id].history:
             say = say + '| {} |  {}  |  {}  |\n'.format(i['request'], i['hit'], i['brow'])
         await message.channel.send(say)
+        
+async def on_member_join(member):
+    guild = member.guild
+    channel = guild.get_channel(774679471809626124)
+    await client.send_message(channel, 'よろしく！')
 
 
         
