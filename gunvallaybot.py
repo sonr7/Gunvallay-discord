@@ -104,13 +104,14 @@ async def loop():
         await channel.send('じほ')
         
 nowa = datetime.now().strftime('%H:%M')
-     
-@client.event
+
 async def time():
     if nowa == '15:00':
         guild = client.get_guild(774679471243788339)
         channel = guild.get_channel(774933645001621545)
         await client.send_message(channel, 'じほ')
+     
+@client.event
 async def on_member_join(member):
     guild = member.guild
     channel = guild.get_channel(774679471809626124)
