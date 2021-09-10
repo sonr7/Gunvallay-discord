@@ -53,7 +53,7 @@ async def reply(message):
     reply = f'{message.author.mention}呼んだ？'
     await message.channel.send(reply)
     
-async def time(message):
+async def zikan(message):
     timer0, timer1 = message.content.split()
     timers = int(timer1)
     asyncio.sleep(timers)
@@ -295,7 +295,7 @@ async def on_message(message):
     if client.user in message.mentions:
         await reply(message)
     if '#zikan' in message.content:
-        await time(message)
+        await zikan(message)
     if '#wiki'in message.content:
         wiki0, wiki1 = message.content.split()
         wikipedia.set_lang('ja')
