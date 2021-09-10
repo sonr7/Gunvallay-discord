@@ -110,8 +110,7 @@ async def loop():
         
 nowa = datetime.now().strftime('%H:%M')
 
-async def time():
-    if nowa == '15:00':
+async def timer():
         guild = client.get_guild(774679471243788339)
         channel = guild.get_channel(774933645001621545)
         await client.send_message(channel, 'じほ')
@@ -317,6 +316,8 @@ async def on_message(message):
                 page_url = f'https://ja.wikipedia.org/wiki/{page}'
                 embed.add_field(name = page, value = f'「{page}」で再検索', inline = False)
             await message.channel.send(embed = embed)
+    if nowa == '15:00':
+        await timer()
     if '#ngadd' in message.content:
         await NG(message)
     if '#nglist' in message.content:
