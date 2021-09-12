@@ -151,13 +151,13 @@ async def on_message(message):
         await message.channel.send('(ミッキーだよ)')
     if '#pls' in message.content:
         plus_list_str = message.content.split()
-        plus_list_str.remove('#p')
+        plus_list_str.remove('#pls')
         plus_list = map(float, plus_list_str)
         plus = sum(plus_list)
         await message.channel.send(plus)
     if '#mns' in message.content:
         minus_list2_str = message.content.split()
-        minus_list2_str.remove('#m')
+        minus_list2_str.remove('#mns')
         minus11 = float(minus_list2_str[0])
         minus1 = Decimal(minus11)
         minus_list2_str.remove(minus_list2_str[0])
@@ -169,13 +169,13 @@ async def on_message(message):
         await message.channel.send(minus)
     if '#tim' in message.content:
         time_list_str = message.content.split()
-        time_list_str.remove('#t')
+        time_list_str.remove('#tim')
         time_list = map(float, time_list_str)
         time = reduce(mul, time_list)
         await message.channel.send(time)
     if '#div' in message.content:
         divide_list_str = message.content.split()
-        divide_list_str.remove('#d')
+        divide_list_str.remove('#div')
         divide11_str = divide_list_str[0]
         divide11 = float(divide11_str)
         divide1 = Decimal(divide11)
