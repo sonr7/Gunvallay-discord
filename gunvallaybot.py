@@ -208,8 +208,8 @@ async def on_message(message):
         await message.channel.send(now)
     if '#help' in message.content:
         embed = discord.Embed(title = "**がんばれ君が助けに来た！**")
-        embed.add_field(name = "**応答**", value = "たまに言葉で反応するときがあるよ！（「。」を使えば黙らせられるよー）", inline = False)
-        embed.add_field(name = "**#pls x y**", value = "足し算できるよ！3個以上の数値もできるよ！（この場合はx+yになるよー）", inline = False)
+        embed.add_field(name = "`応答`", value = "たまに言葉で反応するときがあるよ！（「。」を使えば黙らせられるよー）", inline = False)
+        embed.add_field(name = "`#pls x y`", value = "足し算できるよ！3個以上の数値もできるよ！（この場合はx+yになるよー）", inline = False)
         embed.add_field(name = "**#mns x y**", value = "引き算できるよ！3個以上の数値もできるよ！（この場合はx-yになるよー）", inline = False)
         embed.add_field(name = "**#tim x y**", value = "掛け算できるよ！3個以上の数値もできるよ！（この場合はx×yになるよー）", inline = False)
         embed.add_field(name = "**#div x y**", value = "割り算できるよ！3個以上の数値もできるよ！（この場合はx÷yになるよー）", inline = False)
@@ -230,14 +230,14 @@ async def on_message(message):
         rlt_result = random.choice(rlt_list)
         await message.channel.send(rlt_result)
     if '#ebr' in message.content:
-        embed = discord.Embed(title = '**みんはや鯖メンバー**')
+        embed = discord.Embed(title = 'みんはや鯖メンバー')
         guild = message.guild
         ebr_all = guild.member_count
         ebr_user = sum(1 for member in guild.members if not member.bot)
         ebr_bot = sum(1 for member in guild.members if member.bot)
-        embed.add_field(name = '**メンバー数**', value = ebr_all)
-        embed.add_field(name = '**人数**', value = ebr_user)
-        embed.add_field(name = '**bot数**', value = ebr_bot)
+        embed.add_field(name = '`メンバー数`', value = ebr_all)
+        embed.add_field(name = '`人数`', value = ebr_user)
+        embed.add_field(name = '`bot数`', value = ebr_bot)
         await message.channel.send(embed = embed)
     if '!d bump' in message.content:
         if message.content.startswith("!d bump"):
