@@ -103,15 +103,6 @@ async def on_member_join(member):
 @client.event
 async def on_ready():
     print('起動しました')
-    
-@tasks.loop(seconds = 60)
-async def loop():
-    zihox = datetime.now().strftime('%H')
-    intziho = int(zihox) + 9
-    ziho = f'{intziho}:%M'
-    if ziho == '22:16':
-        channel = client.get_channel(zikkenmain)
-        await channel.send('じほ')
         
 nowa = datetime.now().strftime('%H:%M')
 
@@ -205,7 +196,7 @@ async def on_message(message):
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
     if '#now' in message.content:
-        await message.channel.send(now)
+        await message.channel.send(nowa)
     if '#help' in message.content:
         embed = discord.Embed(title = "がんばれ君が助けに来た！")
         embed.add_field(name = "``応答``", value = "たまに言葉で反応するときがあるよ！（「。」を使えば黙らせられるよー）", inline = False)
