@@ -104,8 +104,6 @@ async def on_member_join(member):
 async def on_ready():
     print('起動しました')
         
-nowa = datetime.now().strftime('%H:%M')
-
 async def timer():
         guild = client.get_guild(774679471243788339)
         channel = guild.get_channel(774933645001621545)
@@ -196,6 +194,15 @@ async def on_message(message):
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
     if '#now' in message.content:
+        nowY = datetime.now().strftime('%Y')
+        nowm = datetime.now().strftime('%m')
+        nowd = datetime.now().strftime('%d')
+        nowH_1 = datetime.now().strftime('%H')
+        nowM = datetime.now().strftime('%M')
+        nows = datetime.now().strftime('%S')
+        nowH_int = int(nowH_1)
+        nowH = nowH_int + 9
+        nowa = f'今は{nowY}年{nowm}月{nowd}日{nowH}時{nowM}分{nows}秒だぜ！'
         await message.channel.send(nowa)
     if '#help' in message.content:
         embed = discord.Embed(title = "がんばれ君が助けに来た！")
