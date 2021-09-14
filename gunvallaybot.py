@@ -219,7 +219,7 @@ async def on_message(message):
         embed.add_field(name = "`#ebr`", value = "鯖内のメンバー数、人数、BOT数がわかるよ！", inline = False)
         embed.add_field(name = "`#fjk`", value = "くぁwせdrftgyふじこlp", inline = False)
         embed.add_field(name = "`#wiki`", value = "wikiで検索してくれるよ！", inline = False)
-        embed.add_field(name = "`#wach x y`", value = "wikiでxの検索候補をy個表示してくれるよ！", inline = False)
+        embed.add_field(name = "`#wach `", value = "wikiでxの検索候補を10個表示してくれるよ！", inline = False)
         embed.add_field(name = '`#ranks`', value = 'それぞれのみんはやのランクの人数を教えてくれるよ！', inline = False)
         embed.add_field(name = '`#zikan`', value = 'タイマーを使えるよ！', inline = False)
         await message.channel.send(embed = embed)
@@ -303,7 +303,7 @@ async def on_message(message):
         wikipedia.set_lang('ja')
         try:
             page_title = wikipedia.page(message.content)
-            embed = discord.Embed(title = message.content, url = f'https://ja.wikipedia.org/wiki/{wiki1}')
+            embed = discord.Embed(title = message.content, url = f'https://ja.wikipedia.org/wiki/{message.content}')
             page_summary = wikipedia.summary(message.content)
             embed.add_field(name = page_title, value = page_summary, inline = False)
             await message.channel.send(embed = embed)
