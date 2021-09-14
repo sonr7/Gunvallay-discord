@@ -456,7 +456,7 @@ async def on_message(message):
         await message.guild.voice_client.play(player)
         await message.channel.send('{} 再生！'.format(player.title))
     elif message.content.split('#s'):
-        if mesage.guild.voice_client is None:
+        if message.guild.voice_client is None:
             await message.channel.send('おーっと、ボイスチャンネルにいないからできないようだ！')
             return
         if not message.guild.voice_client.is_playing():
