@@ -316,6 +316,8 @@ async def on_message(message):
                 page_url = f'https://ja.wikipedia.org/wiki/{page}'
                 embed.add_field(name = page, value = f'「{page}」で再検索', inline = False)
             await message.channel.send(embed = embed)
+        except wikipedia.exceptions.PageError:
+            await message.channel.send('ページが見つからん！')
     if '00時00分05秒だぜ！' in nowa:
         await timer()
     if '#ngadd' in message.content:
