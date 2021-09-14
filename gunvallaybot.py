@@ -1,5 +1,6 @@
 import discord
 import asyncio
+import youtube_dl
 import re
 import os
 from discord.ext import commands
@@ -13,6 +14,7 @@ import time
 import random
 import sys
 import wikipedia
+from discord_slash import SlashCommand, SlashContext
 
 kouyatitai = '790254976198115380'
 
@@ -35,6 +37,10 @@ intents = discord.Intents.default()
 intents.members = True
 
 client = discord.Client(intents = intents)
+
+bot = discord.Client(intents=discord.Intents.all())
+
+slash_client = SlashCommand(bot, sync_commands=True)
 
 X = datetime.now().strftime('%H')
 Xint = int(X) + 9
@@ -91,6 +97,50 @@ class Room():
             elif self.ans.find(value) != -1:
                 hit += 1
         return hit, brow
+
+youtube_dl.utils.bug_reports_message = lambda: ''
+
+ytdl_format_options = {
+    'format': 'bestaudio/best',
+    'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
+    'restrictfilenames': True,
+    'noplaylist': True,
+    'nocheckcertificate': True,
+    'ignoreerrors': False,
+    'logtostderr': False,
+    'quiet': True,
+    'no_warnings': True,
+    'default_search': 'auto',
+    'source_address': '0.0.0.0' # bind to ipv4 since ipv6 addresses cause issues sometimes
+}
+
+    
+ffmpeg_options = {
+    'options': '-vn'
+}
+    
+class YTDLSource(discord.PCMVolumeTransformer):
+    def __init__(self, source, *, data, volume=0.5):
+        super().__init__(source, volume)
+
+        self.data = data
+
+        self.title = data.get('title')
+        self.url = data.get('url')
+     @classmethod
+     async def from_url(cls, url, *, loop=None, stream=False):
+         loop = loop or asyncio.get_event_loop()
+         data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=not stream))
+
+         if 'entries' in data:
+             # take first item from a playlist
+             data = data['entries'][0]
+
+         filename = data['url'] if stream else ytdl.prepare_filename(data)
+         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
+
+        
+ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
     
 rooms = {0:"example"}
 
@@ -298,8 +348,8 @@ async def on_message(message):
         await reply(message)
     if '#zikan' in message.content:
         await zikan(message)
-    if '#wiki:'in message.content:
-        wiki0, wiki1 = message.content.split(':', 1)
+    if '#wiki'in message.content:
+        wiki1 = message.content[6:]
         wikipedia.set_lang('ja')
         try:
             page_title = wikipedia.page(wiki1)
@@ -382,6 +432,37 @@ async def on_message(message):
         for i in rooms[message.channel.id].history:
             say = say + '| {} |  {}  |  {}  |\n'.format(i['request'], i['hit'], i['brow'])
         await message.channel.send(say)
+    if '#join' in message.content:
+        if message.author.voice is None:
+            await message.channel.send('おーっと、ボイスチェンネルにいないからできないようだ！')
+            return
+        await message.author.voice.channel.connect()
+    elif '#leave' in message.content:
+        if message.guild.voice_client is None:
+            await message.channel.send('おーっと、ボイスチャンネルにいないからできないようだ！')
+            return
+        await message.guild.voice_client.disconnect()
+        await message.channel.send('バイバイ！')
+    elif message.content.startswith('#p'):
+        if message.guild.voice_client is None:
+            await message.channel.send('おーっと、ボイスチャンネルにいないからできないようだ！')
+            return
+        if message.guild.voice_client.is_playing():
+            await message.channel.send('おーっと、今再生中だから流せないようだ！')
+            return
+        url = message.content[3:]
+        player = await YTDLSource.from_url(url, loop = client.loop)
+        await message.guild.voice_client.play(player)
+        await message.channel.send('{} 再生！'.format(player.title))
+    elif message.content.split('#s'):
+        if mesage.guild.voice_client is None:
+            await message.channel.send('おーっと、ボイスチャンネルにいないからできないようだ！')
+            return
+        if not message.guild.voice_client.is_playing():
+            await message.channel.send('おーっと、今再生してないからできないようだ！')
+            return
+        message.guild.voice_client.stop()
+        await message.channel.send('停止...')
         
 async def on_member_join(member):
     guild = member.guild
