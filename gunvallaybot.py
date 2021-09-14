@@ -268,7 +268,7 @@ async def on_message(message):
         embed.add_field(name = "`#llt x y z`", value = "ルーレットできるよ！（この場合はx,y,z,のどれかが出るよ！", inline = False)
         embed.add_field(name = "`#ebr`", value = "鯖内のメンバー数、人数、BOT数がわかるよ！", inline = False)
         embed.add_field(name = "`#fjk`", value = "くぁwせdrftgyふじこlp", inline = False)
-        embed.add_field(name = "`#wiki:`", value = "wikiで検索してくれるよ！(コロン「:」を忘れないでね！)", inline = False)
+        embed.add_field(name = "`#wiki`", value = "wikiで検索してくれるよ！", inline = False)
         embed.add_field(name = "`#wach `", value = "wikiでxの検索候補を10個表示してくれるよ！", inline = False)
         embed.add_field(name = '`#ranks`', value = 'それぞれのみんはやのランクの人数を教えてくれるよ！', inline = False)
         embed.add_field(name = '`#zikan`', value = 'タイマーを使えるよ！', inline = False)
