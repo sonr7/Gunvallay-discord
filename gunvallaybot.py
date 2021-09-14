@@ -299,16 +299,16 @@ async def on_message(message):
     if '#zikan' in message.content:
         await zikan(message)
     if '#wiki'in message.content:
-        wiki0, wiki1 = message.content.split()
+        re.sub('#wiki', '', message.content)
         wikipedia.set_lang('ja')
         try:
-            page_title = wikipedia.page(wiki1)
-            embed = discord.Embed(title = wiki1, url = f'https://ja.wikipedia.org/wiki/{wiki1}')
-            page_summary = wikipedia.summary(wiki1)
+            page_title = wikipedia.page(message.content)
+            embed = discord.Embed(title = message.content, url = f'https://ja.wikipedia.org/wiki/{wiki1}')
+            page_summary = wikipedia.summary(message.content)
             embed.add_field(name = page_title, value = page_summary, inline = False)
             await message.channel.send(embed = embed)
         except wikipedia.exceptions.DisambiguationError:
-            page_search = wikipedia.search(wiki1, results = 11)
+            page_search = wikipedia.search(message.content, results = 11)
             page_search_url = f'https://ja.wikipedia.org/wiki/{page_search}'
             embed = discord.Embed()
             for page in page_search:
@@ -329,10 +329,9 @@ async def on_message(message):
             embed.add_field(name = f, value = f, inline = False)
         await message.channel.send(embed = embed)
     if '#wach' in message.content:
-        wiki0, wiki1, wiki2 = message.content.split()
+        re.sub('#wiki', '', message.content)
         wikipedia.set_lang('ja')
-        wiki22 = int(wiki2) + 1
-        page_ach = wikipedia.search(wiki1, results = wiki22)
+        page_ach = wikipedia.search(message.content, results = 11)
         page_search_url = f'https://ja.wikipedia.org/wiki/{page_ach}'
         embed = discord.Embed()
         for pages in page_ach:
