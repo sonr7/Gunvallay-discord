@@ -303,12 +303,12 @@ async def on_message(message):
         wikipedia.set_lang('ja')
         try:
             page_title = wikipedia.page(wiki1)
-            embed = discord.Embed(title = message.content, url = f'https://ja.wikipedia.org/wiki/{wiki1}')
-            page_summary = wikipedia.summary(message.content)
+            embed = discord.Embed(title = wiki1, url = f'https://ja.wikipedia.org/wiki/{wiki1}')
+            page_summary = wikipedia.summary(wiki1)
             embed.add_field(name = page_title, value = page_summary, inline = False)
             await message.channel.send(embed = embed)
         except wikipedia.exceptions.DisambiguationError:
-            page_search = wikipedia.search(message.content, results = 11)
+            page_search = wikipedia.search(wiki1, results = 11)
             page_search_url = f'https://ja.wikipedia.org/wiki/{page_search}'
             embed = discord.Embed()
             for page in page_search:
