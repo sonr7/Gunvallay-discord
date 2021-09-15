@@ -149,7 +149,18 @@ async def on_member_join(member):
     guild = member.guild
     channel = guild.get_channel(774679471809626124)
     await client.send_message(channel, 'よろしく！')
-            
+
+@slash_client.slash(name = 'ebr')
+async def _slash_hello(ctx: SlashContext):
+    embed = discord.Embed(title = 'みんはや鯖メンバー')
+    guild = message.guild
+    ebr_all = guild.member_count
+    ebr_user = sum(1 for member in guild.members if not member.bot)
+    ebr_bot = sum(1 for member in guild.members if member.bot)
+    embed.add_field(name = '`メンバー数`', value = ebr_all)
+    embed.add_field(name = '`人数`', value = ebr_user)
+    embed.add_field(name = '`bot数`', value = ebr_bot)
+    await ctx.send(embed = embed)
     
 @client.event
 async def on_ready():
