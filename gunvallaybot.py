@@ -278,7 +278,7 @@ async def on_message(message):
         embed.add_field(name = "`#sqr x y`", value = "累乗できるよ！（この場合はxのy乗になるよー）", inline = False)
         embed.add_field(name = "`#rot x`", value = "ルートの値求めてくれるよ！", inline = False)
         embed.add_field(name = "`#llt x y z`", value = "ルーレットできるよ！（この場合はx,y,z,のどれかが出るよ！", inline = False)
-        embed.add_field(name = "`#ebr`", value = "鯖内のメンバー数、人数、BOT数がわかるよ！", inline = False)
+        embed.add_field(name = "`#ebr`", value = "鯖内のデータがわかるよ！", inline = False)
         embed.add_field(name = "`#fjk`", value = "くぁwせdrftgyふじこlp", inline = False)
         embed.add_field(name = "`#wiki`", value = "wikiで検索してくれるよ！", inline = False)
         embed.add_field(name = "`#wach `", value = "wikiでxの検索候補を10個表示してくれるよ！", inline = False)
@@ -291,7 +291,7 @@ async def on_message(message):
         rlt_result = random.choice(rlt_list)
         await message.channel.send(rlt_result)
     if '#ebr' in message.content:
-        embed = discord.Embed(title = 'みんはや鯖メンバー')
+        embed = discord.Embed(title = 'みんはや鯖データ')
         guild = message.guild
         ebr_all = guild.member_count
         ebr_user = sum(1 for member in guild.members if not member.bot)
@@ -299,6 +299,9 @@ async def on_message(message):
         embed.add_field(name = '`メンバー数`', value = ebr_all)
         embed.add_field(name = '`人数`', value = ebr_user)
         embed.add_field(name = '`bot数`', value = ebr_bot)
+        embed.add_field(name = 'テキストチャンネル数', value = len(message.guild.text_channels), inline = False)
+        embed.add_field(name = 'ボイスチャンネル数', value = len(message.guild.voice_channels), inline = False)
+        embed.add_field(name = 'カテゴリー数', value = len(message.guild.categories), inline = False)
         await message.channel.send(embed = embed)
     if '!d bump' in message.content:
         if message.content.startswith("!d bump"):
