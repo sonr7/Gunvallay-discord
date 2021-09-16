@@ -444,6 +444,38 @@ async def on_message(message):
         for i in rooms[message.channel.id].history:
             say = say + '| {} |  {}  |  {}  |\n'.format(i['request'], i['hit'], i['brow'])
         await message.channel.send(say)
+    if message.content == '#join':
+        if message.author.voice is None:
+            await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
+            return
+        await message.author.voice.channel.connect()
+    elif message.content == '#leave':
+        if message.guild.voice_client is None:
+            await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
+            return
+        await message.guild.voice_client.disconnect()
+        await message.channel.send("バイバイ！")
+    elif message.content.startswith('#p'):
+        if message.guild.voice_client is None:
+            await message.channel.send("接続していません。")
+            return
+        if message.guild.voice_client.is_playing():
+            await message.channel.send("再生中だよ！")
+            return
+        url = message.content[3:]
+        player = await YTDLSource.from_url(url, loop=client.loop)
+        await message.guild.voice_client.play(player)
+        await message.channel.send('{} を再生するよ！'.format(player.title))
+    elif message.content == "!stop":
+        if message.guild.voice_client is None:
+            await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
+            return
+        if not message.guild.voice_client.is_playing():
+            await message.channel.send("おーっと、再生してないからできないようだ！")
+            return
+        message.guild.voice_client.stop()
+        await message.channel.send("停止...")
+        
         
 async def on_member_join(member):
     guild = member.guild
