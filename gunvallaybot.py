@@ -235,7 +235,7 @@ nowa = f'今は{nowY}年{nowm}月{nowd}日{nowH}時{nowM}分{nows}秒だぜ！'
 @client.event
 async def on_message(message):
     print(message.author.name + "<" + message.content)
-    reg_res = re.compile(u"(.+)の天気は？").search(message.content)
+    reg_res = re.compile(u"#wea (.+)").search(message.content)
     if message.author.bot:
         return
     if '。' in message.content:
