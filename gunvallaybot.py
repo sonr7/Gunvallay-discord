@@ -15,6 +15,8 @@ import time
 import random
 import sys
 import wikipedia
+import json
+import urllib
 from discord_slash import SlashCommand, SlashContext
 
 kouyatitai = '790254976198115380'
@@ -22,6 +24,56 @@ kouyatitai = '790254976198115380'
 main = '774933645001621545'
 
 zikkenmain = '795957183988629546'
+
+citycodes = {
+    "北海道":"016010",
+    "青森":"020010",
+    "岩手":"030010",
+    "宮城":"040010",
+    "秋田":"050010",
+    "山形":"060010",
+    "福島":"070010",
+    "茨城":"080010",
+    "栃木":"090010",
+    "群馬":"100010",
+    "埼玉":"110010",
+    "千葉":"120010",
+    "東京":"130010",
+    "神奈川":"140010",
+    "新潟":"150010",
+    "富山":"160010",
+    "石川":"170010",
+    "福井":"180010",
+    "山形":"190010",
+    "長野":"200010",
+    "岐阜":"210010",
+    "静岡":"220010",
+    "愛知":"230010",
+    "三重":"240010",
+    "滋賀":"250010",
+    "京都":"260010",
+    "大阪":"270000",
+    "兵庫":"280010",
+    "奈良":"290010",
+    "和歌山":"300010",
+    "鳥取":"310010",
+    "島根":"320010",
+    "岡山":"330010",
+    "広島":"340010",
+    "山口":"350010",
+    "徳島":"360010",
+    "香川":"370000",
+    "愛媛":"380010",
+    "高知":"390010",
+    "福島":"400010",
+    "佐賀":"410010",
+    "長崎":"420010",
+    "熊本":"430010",
+    "大分":"440010",
+    "宮崎":"450010",
+    "鹿児島":"460010",
+    "沖縄":"471010",    
+}
 
 def inverse(f):
     return Fraction(f.denominator,f.numerator)
@@ -114,7 +166,6 @@ ytdl_format_options = {
     'default_search': 'auto',
     'source_address': '0.0.0.0' # bind to ipv4 since ipv6 addresses cause issues sometimes
 }
-
     
 ffmpeg_options = {
     'options': '-vn'
@@ -184,6 +235,7 @@ nowa = f'今は{nowY}年{nowm}月{nowd}日{nowH}時{nowM}分{nows}秒だぜ！'
 @client.event
 async def on_message(message):
     print(message.author.name + "<" + message.content)
+    reg_res = re.compile(u"(.+)の天気は？").search(message.content)
     if message.author.bot:
         return
     if '。' in message.content:
@@ -478,6 +530,18 @@ async def on_message(message):
             return
         message.guild.voice_client.stop()
         await message.channel.send("停止...")
+    if reg_res:
+      if reg_res.group(1) in citycodes.keys():
+        citycode = citycodes[reg_res.group(1)]
+        resp = urllib.request.urlopen(f"https://weather.tsukumijima.net/api/forecast/city/{citycode}").read()
+        resp = json.loads(resp.decode("utf-8"))
+        msg = "__【お天気情報：**" + resp["location"]["city"] + "**】__\n"
+        for f in resp["forecasts"]:
+          msg += f["dateLabel"] + "：**" + f["telop"] + "**\n"
+        msg += "```" + resp["description"]["bodyText"] + "```"
+        await message.channel.send(msg)
+      else:
+        await message.channel.send("そこの天気はわかりません...")
         
         
 async def on_member_join(member):
