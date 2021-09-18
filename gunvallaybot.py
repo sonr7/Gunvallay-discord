@@ -694,6 +694,7 @@ async def on_message(message):
         embed.add_field(name = "宮崎", value = "宮崎、延岡、都城、高千穂", inline = False)
         embed.add_field(name = "鹿児島", value = "鹿児島、鹿屋、種子島、名瀬", inline = False)
         embed.add_field(name = "沖縄", value = "那覇、名護、久米島、南大東、宮古島、石垣島、与那国島", inline = False)
+        await message.channel.send(embed = embed)
     if reg_res:
       if reg_res.group(1) in citycodes.keys():
         citycode = citycodes[reg_res.group(1)]
