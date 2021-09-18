@@ -537,9 +537,9 @@ async def on_message(message):
         citycode = citycodes[reg_res.group(1)]
         resp = urllib.request.urlopen(f"https://weather.tsukumijima.net/api/forecast/city/{citycode}").read()
         resp = json.loads(resp.decode("utf-8"))
-        msg = "__【お天気情報：**" + resp["location"]["city"] + "**" + f["temperature"] + "：**" + f.int(["max"]["celsius"]) + f.int(["min"]["celsius"]) + "**\n"
+        msg = "__【お天気情報：**" + resp["location"]["city"] + "**】__\n"
         for f in resp["forecasts"]:
-          msg += f["dateLabel"] + "：**" + f["telop"] + "**\n"
+          msg += f["dateLabel"] + "：**" + f["telop"] + "**" + f["temperature"] + "：**" + f.int(["max"]["celsius"]) + f.int(["min"]["celsius"]) + "**\n"
         msg += "```" + resp["description"]["bodyText"] + "```"
         await message.channel.send(msg)
       else:
