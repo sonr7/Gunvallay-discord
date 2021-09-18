@@ -437,7 +437,7 @@ async def on_message(message):
             await message.channel.send(embed = embed)
         except wikipedia.exceptions.PageError:
             await message.channel.send('ページが見つからん！')
-    if nowtime = '00:00':
+    if nowtime == '00:00':
         await timer()
     if '#ngadd' in message.content:
         await NG(message)
