@@ -27,51 +27,164 @@ zikkenmain = '795957183988629546'
 
 citycodes = {
     "北海道":"016010",
+    "稚内":"011000",
+    "旭川":"012010",
+    "留萌":"012020",
+    "網走":"013010",
+    "北見":"013020",
+    "紋別":"013030",
+    "根室":"014010",
+    "釧路":"014020",
+    "帯広":"014030",
+    "室蘭":"015010",
+    "浦河":"015020",
+    "札幌":"016010",
+    "岩見沢":"016020",
+    "倶知安":"016030",
+    "函館":"017010",
+    "江差":"017020",
     "青森":"020010",
+    "むつ":"020020",
+    "八戸":"020030",
     "岩手":"030010",
+    "盛岡":"030010",
+    "宮古":"030020",
+    "大船渡":"030030,
+    "仙台":"040010",
+    "白石":"040020",
     "宮城":"040010",
+    "横手":"050020",
     "秋田":"050010",
     "山形":"060010",
+    "米沢":"060020",
+    "酒田":"060030",
+    "新庄":"060040",
+    "小名浜":"070020",
+    "若松":"070030",
     "福島":"070010",
     "茨城":"080010",
+    "水戸":"080010",
+    "土浦":"080020",
+    "宇都宮":"090010",
+    "大田原":"090020",
     "栃木":"090010",
     "群馬":"100010",
+    "前橋":"100010",
+    "みなかみ":"100020",
+    "さいたま":"110010",
+    "熊谷":"110020",
+    "秩父":"110030",
     "埼玉":"110010",
     "千葉":"120010",
+    "銚子":"120020",
+    "館山":"120030",
+    "大島":"130020",
+    "八丈島":"130030",
+    "父島":"130040",
     "東京":"130010",
     "神奈川":"140010",
+    "横浜":"140010",
+    "小田原":"140020",
+    "長岡":"150020",
+    "高田":"150030",
+    "相川":"150040",
     "新潟":"150010",
     "富山":"160010",
+    "伏木":"160020",
+    "金沢":"170010",
+    "輪島":"170020",
     "石川":"170010",
     "福井":"180010",
+    "敦賀":"180020",
+    "甲府":"190010",
+    "河口湖":"190020",
     "山梨":"190010",
     "長野":"200010",
+    "松本":"200020",
+    "飯田":"200030",
+    "高山":"210020",
     "岐阜":"210010",
     "静岡":"220010",
+    "網代":"220020",
+    "三島":"220030",
+    "浜松":"220040",
     "愛知":"230010",
+    "名古屋":"230010",
+    "豊橋":"230020",
     "三重":"240010",
+    "津":"240010",
+    "尾鷲":"240020",
+    "大津":"250010",
+    "彦根":"250020",
     "滋賀":"250010",
     "京都":"260010",
+    "舞鶴":"260020",
     "大阪":"270000",
     "兵庫":"280010",
+    "神戸":"280010",
+    "豊岡":"280020",
+    "風屋":"290020",
     "奈良":"290010",
     "和歌山":"300010",
+    "潮岬":"300020",
     "鳥取":"310010",
+    "米子":"310020",
     "島根":"320010",
+    "松江":"320010",
+    "浜田":"320020",
+    "西郷":"320030",
     "岡山":"330010",
+    "津山":"330020",
     "広島":"340010",
-    "山口":"350010",
+    "庄原":"340020",
+    "下関":"350010",
+    "柳井":"350030",
+    "萩":"350040",
+    "山口":"350020",
     "徳島":"360010",
+    "日和佐":"360020",
     "香川":"370000",
+    "高松":"370000",
     "愛媛":"380010",
+    "松山":"380010",
+    "新居浜":"380020",
+    "宇和島":"380030",
     "高知":"390010",
+    "室戸岬":"390020",
+    "清水":"390030",
     "福岡":"400010",
+    "八幡":"400020",
+    "飯塚":"400030",
+    "久留米":"400040",
     "佐賀":"410010",
+    "伊万里":"410020",
+    "佐世保":"420020",
+    "厳原":"420030",
+    "福江":"420040",
     "長崎":"420010",
     "熊本":"430010",
+    "阿蘇乙姫":"430020",
+    "牛深":"430030",
+    "人吉":"430040",
     "大分":"440010",
+    "中津":"440020",
+    "日田":"440030",
+    "佐伯":"440040",
+    "延岡":"450020",
+    "都城":"450030",
+    "高千穂":"450040",
     "宮崎":"450010",
+    "鹿屋":"460020",
+    "種子島":"460030",
+    "名瀬":"460040",
     "鹿児島":"460010",
+    "那覇":"470010",
+    "名護":"470020",
+    "久米島":"470030",
+    "南大東":"470040",
+    "宮古島":"470050",
+    "石垣島":"470060",
+    "与那国島":"470070",
     "沖縄":"471010",    
 }
 
@@ -337,7 +450,7 @@ async def on_message(message):
         embed.add_field(name = "`#wach `", value = "wikiでxの検索候補を10個表示してくれるよ！", inline = False)
         embed.add_field(name = '`#ranks`', value = 'それぞれのみんはやのランクの人数を教えてくれるよ！', inline = False)
         embed.add_field(name = '`#zikan`', value = 'タイマーを使えるよ！', inline = False)
-        embed.add_field(name = '`#wea`', value = '天気予報が見れるよ！(都道府県でやってね！)', inline = False)
+        embed.add_field(name = '`#wea`', value = '天気予報が見れるよ！(「#wel」で調べられる都市がわかるよ！)', inline = False)
         await message.channel.send(embed = embed)
     if '#llt' in message.content:
         rlt_list = message.content.split()
@@ -532,6 +645,55 @@ async def on_message(message):
             return
         message.guild.voice_client.stop()
         await message.channel.send("停止...")
+    if '#wel' in message.content:
+        embed = discord.Embed(title = '天気予報用の都市一覧', description = "検索したいときはこの場所から選んでね！(都道府県名でもできるよ！)")
+        embed.add_field(name = "北海道", value = "稚内、旭川、留萌、網走、北見、紋別、根室、釧路、帯広、室蘭、浦河、札幌、岩見沢、倶知安、函館、江差", inline = False)
+        embed.add_field(name = "青森", value = "青森、むつ、八戸", inline = False)
+        embed.add_field(name = "岩手", value = "盛岡、宮古、大船渡", inline = False)
+        embed.add_field(name = "宮城", value = "仙台、白石", inline = False)
+        embed.add_field(name = "秋田", value = "秋田、横手", inline = False)
+        embed.add_field(name = "山形", value = "山形、米沢、酒田、新庄", inline = False)
+        embed.add_field(name = "福島", value = "福島、小名浜、若松", inline = False)
+        embed.add_field(name = "茨城", value = "水戸、土浦", inline = False)
+        embed.add_field(name = "栃木", value = "宇都宮、大田原", inline = False)
+        embed.add_field(name = "群馬", value = "前橋、みなかみ", inline = False)
+        embed.add_field(name = "埼玉", value = "さいたま、熊谷、秩父", inline = False)
+        embed.add_field(name = "千葉", value = "千葉、銚子、館山", inline = False)
+        embed.add_field(name = "東京", value = "東京、大島、八丈島、父島", inline = False)
+        embed.add_field(name = "神奈川", value = "横浜、小田原", inline = False)
+        embed.add_field(name = "新潟", value = "新潟、長岡、高田、相川", inline = False)
+        embed.add_field(name = "富山", value = "富山、伏木", inline = False)
+        embed.add_field(name = "石川", value = "金沢、輪島", inline = False)
+        embed.add_field(name = "福井", value = "福井、敦賀", inline = False)
+        embed.add_field(name = "山梨", value = "甲府、河口湖", inline = False)
+        embed.add_field(name = "長野", value = "長野、松本、飯田", inline = False)
+        embed.add_field(name = "岐阜", value = "岐阜、高山", inline = False)
+        embed.add_field(name = "静岡", value = "静岡、網代、三島、浜松", inline = False)
+        embed.add_field(name = "愛知", value = "名古屋、豊橋", inline = False)
+        embed.add_field(name = "三重", value = "津、尾鷲", inline = False)
+        embed.add_field(name = "滋賀", value = "大津、彦根", inline = False)
+        embed.add_field(name = "京都", value = "京都、舞鶴", inline = False)
+        embed.add_field(name = "大阪", value = "大阪", inline = False)
+        embed.add_field(name = "兵庫", value = "神戸、豊岡", inline = False)
+        embed.add_field(name = "奈良", value = "奈良、風屋", inline = False)
+        embed.add_field(name = "和歌山", value = "和歌山、潮岬", inline = False)
+        embed.add_field(name = "鳥取", value = "鳥取、米子", inline = False)
+        embed.add_field(name = "島根", value = "松江、浜田、西郷", inline = False)
+        embed.add_field(name = "岡山", value = "岡山、津山", inline = False)
+        embed.add_field(name = "広島", value = "広島、庄原", inline = False)
+        embed.add_field(name = "山口", value = "下関、山口、柳井、萩", inline = False)
+        embed.add_field(name = "徳島", value = "徳島、日和佐", inline = False)
+        embed.add_field(name = "香川", value = "高松", inline = False)
+        embed.add_field(name = "愛媛", value = "松山、新居浜、宇和島", inline = False)
+        embed.add_field(name = "高知", value = "高知、室戸岬、清水", inline = False)
+        embed.add_field(name = "福岡", value = "福岡、八幡、飯塚、久留米", inline = False)
+        embed.add_field(name = "佐賀", value = "佐賀、伊万里", inline = False)
+        embed.add_field(name = "長崎", value = "長崎、佐世保、厳原、福江", inline = False)
+        embed.add_field(name = "熊本", value = "熊本、阿蘇乙姫、牛深、人吉", inline = False)
+        embed.add_field(name = "大分", value = "大分、中津、日田、佐伯", inline = False)
+        embed.add_field(name = "宮崎", value = "宮崎、延岡、都城、高千穂", inline = False)
+        embed.add_field(name = "鹿児島", value = "鹿児島、鹿屋、種子島、名瀬", inline = False)
+        embed.add_field(name = "沖縄", value = "那覇、名護、久米島、南大東、宮古島、石垣島、与那国島", inline = False)
     if reg_res:
       if reg_res.group(1) in citycodes.keys():
         citycode = citycodes[reg_res.group(1)]
