@@ -539,7 +539,7 @@ async def on_message(message):
         resp = json.loads(resp.decode("utf-8"))
         msg = "__【お天気情報：**" + resp["location"]["city"] + "**】__\n"
         for f in resp["forecasts"]:
-          msg += f["dateLabel"] + "：**" + f["telop"] + "**\n"
+          msg += f["dateLabel"] + "：**" + f["telop"] + "**" + "最高気温" + "**" + str(f["temperature"]["max"]["celsius"]) + "**" + "最低気温" + "**" + str(f["temperature"]["min"]["celsius"]) +"**\n"
         msg += "```" + resp["description"]["bodyText"] + "```"
         await message.channel.send(msg)
       else:
