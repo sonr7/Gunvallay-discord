@@ -212,10 +212,6 @@ async def _slash_hello(ctx: SlashContext):
     embed.add_field(name = '`人数`', value = ebr_user)
     embed.add_field(name = '`bot数`', value = ebr_bot)
     await ctx.send(embed = embed)
-    
-@client.event
-async def on_ready():
-    print('起動しました')
         
 async def timer():
         guild = client.get_guild(774679471243788339)
@@ -231,7 +227,12 @@ nows = datetime.now().strftime('%S')
 nowH_int = int(nowH_1)
 nowH = nowH_int + 9
 nowa = f'今は{nowY}年{nowm}月{nowd}日{nowH}時{nowM}分{nows}秒だぜ！'
+nowtime = datetime.now().strftime('%H:%M')
      
+@client.event
+async def on_ready():
+    print('起動しました')
+
 @client.event
 async def on_message(message):
     print(message.author.name + "<" + message.content)
@@ -436,7 +437,7 @@ async def on_message(message):
             await message.channel.send(embed = embed)
         except wikipedia.exceptions.PageError:
             await message.channel.send('ページが見つからん！')
-    if '00時00分05秒だぜ！' in nowa:
+    if nowtime = '00:00':
         await timer()
     if '#ngadd' in message.content:
         await NG(message)
