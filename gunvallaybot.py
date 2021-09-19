@@ -455,6 +455,7 @@ async def on_message(message):
         embed.add_field(name = '`#join`(音楽用)', value = '自分の入っているボイスチャットに入るよ！', inline = False)
         embed.add_field(name = '`#p`(音楽用)', value = '音楽が流せるよ！', inline = False)
         embed.add_field(name = '`#leave`(音楽用)', value = 'ボイチャにいるbotを切断できるよ！', inline = False)
+        embed.add_field(name = '`#stop`(音楽用)', value = '流している音楽を止めれるよ！', inline = False)
         await message.channel.send(embed = embed)
     if '#llt' in message.content:
         rlt_list = message.content.split()
@@ -640,7 +641,7 @@ async def on_message(message):
         player = await YTDLSource.from_url(url, loop=client.loop)
         await message.guild.voice_client.play(player)
         await message.channel.send('{} を再生するよ！'.format(player.title))
-    elif message.content == "!stop":
+    elif message.content == "#stop":
         if message.guild.voice_client is None:
             await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
             return
