@@ -634,7 +634,7 @@ async def on_message(message):
         if message.guild.voice_client is None:
             await message.channel.send("接続していません。")
             return
-        if message.guild.voice_client.is_plaing():
+        if message.guild.voice_client.is_playing():
             embed = discord.Embed(title = 'キュー')
             url = message.content[3:]
             player = await YTDLSource.from_url(url, loop = client.loop)
