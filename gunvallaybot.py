@@ -208,8 +208,6 @@ bot = discord.Client(intents=discord.Intents.all())
 
 slash_client = SlashCommand(bot, sync_commands=True)
 
-voice_client = message.guild.voice_client
-
 X = datetime.now().strftime('%H')
 Xint = int(X) + 9
 NK = f'今は%Y年%m月%d日{Xint}:%Mだぜ！'
@@ -352,6 +350,7 @@ async def on_ready():
 async def on_message(message):
     print(message.author.name + "<" + message.content)
     reg_res = re.compile(u"#wea (.+)").search(message.content)
+    voice_client = message.guild.voice_client
     if message.author.bot:
         return
     if '。' in message.content:
