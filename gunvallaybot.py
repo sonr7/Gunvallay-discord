@@ -646,6 +646,7 @@ async def on_message(message):
                 while message.content == "#loopstop":
                     await message.guild.voice_client.play(player)
                 await message.channel.send('るーぷ終了！')
+                return
         url = message.content[3:]
         player = await YTDLSource.from_url(url, loop=client.loop)
         await message.channel.send('{} を再生するよ！'.format(player.title))
