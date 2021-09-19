@@ -649,7 +649,6 @@ async def on_message(message):
                 return
         url = message.content[3:]
         player = await YTDLSource.from_url(url, loop=client.loop)
-        await message.channel.send('{} を再生するよ！'.format(player.title))
         await message.guild.voice_client.play(player)
         if message.content == '#np':
             if not message.guild.voice_client.is_playing():
