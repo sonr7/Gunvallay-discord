@@ -640,7 +640,7 @@ async def on_message(message):
             player = await YTDLSource.from_url(url, loop = client.loop)
             embed.add_field(name = player.title, value = 'by {}'.format(message.author.id), inline = False)
             await message.channel.send(embed = embed)
-            if message.guild.voice_client.stop():
+            if not message.guild.voice_client.is_playing():
                 await message.channel.send('{} を再生するよ!'.format(player.title))
                 await message.guild.voice_client.play(player)
         url = message.content[3:]
