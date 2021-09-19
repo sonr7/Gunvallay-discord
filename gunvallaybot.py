@@ -555,7 +555,7 @@ async def on_message(message):
             await message.channel.send(embed = embed)
         except wikipedia.exceptions.PageError:
             await message.channel.send('ページが見つからん！')
-    if nowtime == '00:00':
+    if nowtime == ':00':
         await timer()
     if '#ngadd' in message.content:
         await NG(message)
@@ -634,12 +634,17 @@ async def on_message(message):
         if message.guild.voice_client is None:
             await message.channel.send("接続していません。")
             return
-        if message.guild.voice_client.is_playing():
-            await message.channel.send("再生中だよ！")
-            return
+        if message.guild.voice_client.is_plaing():
+            embed = discord.Embed(title = 'キュー')
+            url = message.content[3:]
+            player = await YTDLSource.from_url(url, loop = client.loop)
+            embed.add_field(name = player.title, value = 'by {}'.format(message.author.id.name), inline = False)
+            await message.channel.send(embed = embed)
+            if not message.guild.voice_client.is_playing():
+                await message.channel.send('{} を再生するよ!'.format(player.title))
+                await message.guild.voice_client.play(player)
         url = message.content[3:]
         player = await YTDLSource.from_url(url, loop=client.loop)
-        embed = discord.Embed(title = player.title, url = url)
         embed.add_field(name = player.title, value = 'を再生するよ！', inline = False)
         await message.channel.send('{} を再生するよ！'.format(player.title))
         await message.guild.voice_client.play(player)
