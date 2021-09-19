@@ -555,7 +555,7 @@ async def on_message(message):
             await message.channel.send(embed = embed)
         except wikipedia.exceptions.PageError:
             await message.channel.send('ページが見つからん！')
-    if nowtime == ':00':
+    if nowtime == '15:00':
         await timer()
     if '#ngadd' in message.content:
         await NG(message)
@@ -645,7 +645,6 @@ async def on_message(message):
                 await message.guild.voice_client.play(player)
         url = message.content[3:]
         player = await YTDLSource.from_url(url, loop=client.loop)
-        await message.channel.send('{} を再生するよ！'.format(player.title))
         await message.guild.voice_client.play(player)
     elif message.content == "#stop":
         if message.guild.voice_client is None:
