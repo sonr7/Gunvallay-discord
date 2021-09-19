@@ -641,16 +641,16 @@ async def on_message(message):
                 queue_list.remove(player)
                 await message.channel.send('{} を再生するよ!'.format(player.title))
                 await message.guild.voice_client.play(player)
-            elif message.content == '#loop':
+        url = message.content[3:]
+        player = await YTDLSource.from_url(url, loop=client.loop)
+        await message.channel.send('{} を再生！'.format(player.title))
+        message.guild.voice_client.play(player)
+        if message.content == '#loop' message.guild.voice_client.is_playing():
                 await message.channel.send('るーぷ！')
                 while message.content == "#loopstop":
                     await message.guild.voice_client.play(player)
                 await message.channel.send('るーぷ終了！')
                 return
-        url = message.content[3:]
-        player = await YTDLSource.from_url(url, loop=client.loop)
-        await message.channel.send('{} を再生！'.format(player.title))
-        message.guild.voice_client.play(player)
         if message.content == '#np':
             if not message.guild.voice_client.is_playing():
                 await message.channel.send("おーっと、再生してないからできないようだ！")
