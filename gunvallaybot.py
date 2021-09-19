@@ -651,7 +651,11 @@ async def on_message(message):
         await message.channel.send('{} を再生するよ！'.format(player.title))
         await message.guild.voice_client.play(player)
         if message.content == '#np':
+            if not message.guild.voice_client.is_playing():
+                await message.channel.send("おーっと、再生してないからできないようだ！")
+                return
             embed = discord.Embed(title = player.title, url = player)
+            await message.channel.send(embed = embed)
     elif message.content == "#stop":
         if message.guild.voice_client is None:
             await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
