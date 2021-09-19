@@ -452,6 +452,9 @@ async def on_message(message):
         embed.add_field(name = '`#ranks`', value = 'それぞれのみんはやのランクの人数を教えてくれるよ！', inline = False)
         embed.add_field(name = '`#zikan`', value = 'タイマーを使えるよ！', inline = False)
         embed.add_field(name = '`#wea`', value = '天気予報が見れるよ！(「#wel」で調べられる都市がわかるよ！)', inline = False)
+        embed.add_field(name = '`#join`(音楽用)', value = '自分の入っているボイスチャットに入るよ！', inline = False)
+        embed.add_field(name = '`#p`(音楽用)', value = '音楽が流せるよ！', inline = False)
+        embed.add_field(name = '`#leave`(音楽用)', value = 'ボイチャにいるbotを切断できるよ！', inline = False)
         await message.channel.send(embed = embed)
     if '#llt' in message.content:
         rlt_list = message.content.split()
