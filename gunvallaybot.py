@@ -639,8 +639,10 @@ async def on_message(message):
             return
         url = message.content[3:]
         player = await YTDLSource.from_url(url, loop=client.loop)
-        await message.guild.voice_client.play(player)
+        embed = discord.Embed(title = player.title, url = url)
+        embed.add_field(name = player.title, value = 'を再生するよ！', inline = False)
         await message.channel.send('{} を再生するよ！'.format(player.title))
+        await message.guild.voice_client.play(player)
     elif message.content == "#stop":
         if message.guild.voice_client is None:
             await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
