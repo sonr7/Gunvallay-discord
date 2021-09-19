@@ -452,7 +452,6 @@ async def on_message(message):
         embed.add_field(name = '`#ranks`', value = 'それぞれのみんはやのランクの人数を教えてくれるよ！', inline = False)
         embed.add_field(name = '`#zikan`', value = 'タイマーを使えるよ！', inline = False)
         embed.add_field(name = '`#wea`', value = '天気予報が見れるよ！(「#wel」で調べられる都市がわかるよ！)', inline = False)
-        embed.add_field(name = '`#join`(音楽用)', value = '自分の入っているボイスチャットに入るよ！', inline = False)
         embed.add_field(name = '`#p`(音楽用)', value = '音楽が流せるよ！', inline = False)
         embed.add_field(name = '`#leave`(音楽用)', value = 'ボイチャにいるbotを切断できるよ！', inline = False)
         embed.add_field(name = '`#stop`(音楽用)', value = '流している音楽を止めれるよ！', inline = False)
@@ -619,11 +618,6 @@ async def on_message(message):
         for i in rooms[message.channel.id].history:
             say = say + '| {} |  {}  |  {}  |\n'.format(i['request'], i['hit'], i['brow'])
         await message.channel.send(say)
-    if message.content == '#join':
-        if message.author.voice is None:
-            await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
-            return
-        await message.author.voice.channel.connect()
     elif message.content == '#leave':
         if message.guild.voice_client is None:
             await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
@@ -631,9 +625,10 @@ async def on_message(message):
         await message.guild.voice_client.disconnect()
         await message.channel.send("バイバイ！")
     elif message.content.startswith('#p'):
+        if message.author.voice is None:
+            await message.channel.send('おーっと、ボイスチャンネルにいないからできないようだ！')
         if message.guild.voice_client is None:
-            await message.channel.send("接続していません。")
-            return
+            await message.author.voice.channel.connect()
         if message.guild.voice_client.is_playing():
             embed = discord.Embed(title = 'キュー')
             url = message.content[3:]
