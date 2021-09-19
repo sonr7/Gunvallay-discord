@@ -637,10 +637,13 @@ async def on_message(message):
         if message.guild.voice_client.is_playing():
             embed = discord.Embed(title = 'キュー')
             url = message.content[3:]
-            player = await YTDLSource.from_url(url, loop = client.loop)
-            embed.add_field(name = player.title, value = 'by {}'.format(message.author.id), inline = False)
+            players = await YTDLSource.from_url(url, loop = client.loop)
+            queue_list.append(players)
+            embed.add_field(name = players.title, value = 'by {}'.format(message.author.id), inline = False)
             await message.channel.send(embed = embed)
             if not message.guild.voice_client.is_playing():
+                player = queue_list[0]
+                queue_list.remove(player)
                 await message.channel.send('{} を再生するよ!'.format(player.title))
                 await message.guild.voice_client.play(player)
         url = message.content[3:]
