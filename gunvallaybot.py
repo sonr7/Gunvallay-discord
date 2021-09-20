@@ -652,7 +652,7 @@ async def on_message(message):
             while len(queue_list) == 0:
                 while not message.guild.voice_client.is_playing():
                     await asyncio.sleep(0.1)
-                await message.guild.voice_client.play(players)
+                await message.guild.voice_client.play(queue_list[0])
                 queue_list.remove[0]
         except youtube_dl.utils.DownloadError:
             await message.channel.send('NOT FOUND!')
