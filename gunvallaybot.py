@@ -625,32 +625,35 @@ async def on_message(message):
         await message.guild.voice_client.disconnect()
         await message.channel.send("バイバイ！")
     elif message.content.startswith('#p'):
-        if message.author.voice is None:
-            await message.channel.send('おーっと、ボイスチャンネルにいないからできないようだ！')
-        if message.guild.voice_client is None:
-            await message.author.voice.channel.connect()
-        if message.guild.voice_client.is_playing():
-            embed = discord.Embed(title = 'キュー')
+        try:
+            if message.author.voice is None:
+                await message.channel.send('おーっと、ボイスチャンネルにいないからできないようだ！')
+            if message.guild.voice_client is None:
+                await message.author.voice.channel.connect()
+            if message.guild.voice_client.is_playing():
+                embed = discord.Embed(title = 'キュー')
+                url = message.content[3:]
+                players = await YTDLSource.from_url(url, loop = client.loop)
+                queue_list.append(players)
+                embed.add_field(name = players.title, value = 'by {}'.format(message.author.id), inline = False)
+                await message.channel.send(embed = embed)
+                if not message.guild.voice_client.is_playing():
+                    player = queue_list[0]
+                    queue_list.remove(player)
+                    await message.channel.send('{} を再生するよ!'.format(player.title))
+                    await message.guild.voice_client.play(player)
             url = message.content[3:]
-            players = await YTDLSource.from_url(url, loop = client.loop)
-            queue_list.append(players)
-            embed.add_field(name = players.title, value = 'by {}'.format(message.author.id), inline = False)
-            await message.channel.send(embed = embed)
-            if not message.guild.voice_client.is_playing():
-                player = queue_list[0]
-                queue_list.remove(player)
-                await message.channel.send('{} を再生するよ!'.format(player.title))
-                await message.guild.voice_client.play(player)
-        url = message.content[3:]
-        player = await YTDLSource.from_url(url, loop=client.loop)
-        await message.channel.send('{} を再生！'.format(player.title))
-        message.guild.voice_client.play(player)
-        if message.content == '#np':
-            if not message.guild.voice_client.is_playing():
-                await message.channel.send("おーっと、再生してないからできないようだ！")
-                return
-            embed = discord.Embed(title = player.title, url = player)
-            await message.channel.send(embed = embed)
+            player = await YTDLSource.from_url(url, loop=client.loop)
+            await message.channel.send('{} を再生！'.format(player.title))
+            message.guild.voice_client.play(player)
+            if message.content == '#np':
+                if not message.guild.voice_client.is_playing():
+                    await message.channel.send("おーっと、再生してないからできないようだ！")
+                    return
+                embed = discord.Embed(title = player.title, url = player)
+                await message.channel.send(embed = embed)
+        except youtube_dl.utils.DownloadError:
+            await message.channel.send('NOT FOUND!')
     if message.content == '#loop' and message.guild.voice_client.is_playing():
         await message.channel.send('るーぷ！')
         player = message.guild.voice_client.is_playing()
