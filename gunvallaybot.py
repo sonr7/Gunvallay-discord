@@ -657,6 +657,12 @@ async def on_message(message):
                 return
             embed = discord.Embed(title = player.title, url = player)
             await message.channel.send(embed = embed)
+    if message.content == '#loop' and message.guild.voice_client.is_playing():
+        await message.channel.send('るーぷ！')
+        player = message.guild.voice_client.is_playing():
+        while message.content == "#loopstop":
+            await message.guild.voice_client.play(player)
+        await message.channel.send('るーぷ終了！')
     elif message.content == "#stop":
         if message.guild.voice_client is None:
             await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
