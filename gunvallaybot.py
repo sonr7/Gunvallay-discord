@@ -632,18 +632,6 @@ async def on_message(message):
                 await message.channel.send('おーっと、ボイスチャンネルにいないからできないようだ！')
             if message.guild.voice_client is None:
                 await message.author.voice.channel.connect()
-            if message.guild.voice_client.is_playing():
-                embed = discord.Embed(title = 'キュー')
-                url = message.content[3:]
-                players = await YTDLSource.from_url(url, loop = client.loop)
-                queue_list.append(players)
-                embed.add_field(name = players.title, value = 'by {}'.format(message.author.id), inline = False)
-                await message.channel.send(embed = embed)
-                while len(queue_list) == 0:
-                    while not message.guild.voice_client.is_playing():
-                        await asyncio.sleep(0.1)
-                    await message.guild.voice_client.play(players)
-                    queue_list.remove[0]
             url = message.content[3:]
             player = await YTDLSource.from_url(url, loop=client.loop)
             await message.channel.send('{} を再生！'.format(player.title))
@@ -654,6 +642,18 @@ async def on_message(message):
                     return
                 embed = discord.Embed(title = player.title, url = player)
                 await message.channel.send(embed = embed)
+        except discord.errors.ClientException:
+            embed = discord.Embed(title = 'キュー')
+            url = message.content[3:]
+            players = await YTDLSource.from_url(url, loop = client.loop)
+            queue_list.append(players)
+            embed.add_field(name = players.title, value = 'by {}'.format(message.author.id), inline = False)
+            await message.channel.send(embed = embed)
+            while len(queue_list) == 0:
+                while not message.guild.voice_client.is_playing():
+                    await asyncio.sleep(0.1)
+                await message.guild.voice_client.play(players)
+                queue_list.remove[0]
         except youtube_dl.utils.DownloadError:
             await message.channel.send('NOT FOUND!')
     if message.content == '#loop' and message.guild.voice_client.is_playing():
