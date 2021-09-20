@@ -660,7 +660,7 @@ async def on_message(message):
     if message.content == '#loop' and message.guild.voice_client.is_playing():
         await message.channel.send('るーぷ！')
         player = message.guild.voice_client.is_playing()
-        while message.content == "#loopstop":
+        while message.content == "#lost":
             await message.guild.voice_client.play(player)
         await message.channel.send('るーぷ終了！')
     elif message.content == "#stop":
