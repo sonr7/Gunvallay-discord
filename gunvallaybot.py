@@ -647,7 +647,7 @@ async def on_message(message):
             url = message.content[3:]
             players = await YTDLSource.from_url(url, loop = client.loop)
             queue_list.append(players)
-            embed.add_field(name = players.title, value = 'by {}'.format(message.author.display_name), inline = False)
+            embed.add_field(name = players.title, value = 'by {}'.format(message.author.display_name + message.author.discriminator), inline = False)
             await message.channel.send(embed = embed)
             while len(queue_list) == 0:
                 while not message.guild.voice_client.is_playing():
@@ -693,7 +693,6 @@ async def on_message(message):
         await message.channel.send(msg)
       else:
         await message.channel.send("そこの天気はわかりません...")
-        
         
 async def on_member_join(member):
     guild = member.guild
