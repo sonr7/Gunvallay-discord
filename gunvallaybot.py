@@ -453,7 +453,7 @@ async def on_message(message):
         embed.add_field(name = "`#wach `", value = "wikiでxの検索候補を10個表示してくれるよ！", inline = False)
         embed.add_field(name = '`#ranks`', value = 'それぞれのみんはやのランクの人数を教えてくれるよ！', inline = False)
         embed.add_field(name = '`#zikan`', value = 'タイマーを使えるよ！', inline = False)
-        embed.add_field(name = '`#wea`', value = '天気予報が見れるよ！(「#wel」で調べられる都市がわかるよ！)', inline = False)
+        embed.add_field(name = '`#wea`', value = '天気予報が見れるよ！(都道府県でやってね！)', inline = False)
         embed.add_field(name = '`#p`(音楽用)', value = '音楽が流せるよ！', inline = False)
         embed.add_field(name = '`#leave`(音楽用)', value = 'ボイチャにいるbotを切断できるよ！', inline = False)
         embed.add_field(name = '`#stop`(音楽用)', value = '流している音楽を止めれるよ！', inline = False)
