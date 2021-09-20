@@ -647,7 +647,7 @@ async def on_message(message):
             url = message.content[3:]
             players = await YTDLSource.from_url(url, loop = client.loop)
             queue_list.append(players)
-            valu = f'by {message.author.display_name}#{message.author.discriminator}'
+            valu = f'by {message.author.display_name}({message.author.name}#{message.author.discriminator})'
             embed.add_field(name = players.title, value = valu, inline = False)
             await message.channel.send(embed = embed)
             while len(queue_list) == 0:
