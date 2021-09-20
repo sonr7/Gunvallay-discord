@@ -309,6 +309,8 @@ ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
     
 rooms = {0:"example"}
 
+queue_list = []
+
 async def on_member_join(member):
     guild = member.guild
     channel = guild.get_channel(774679471809626124)
