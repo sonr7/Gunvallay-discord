@@ -637,11 +637,11 @@ async def on_message(message):
                 queue_list.append(players)
                 embed.add_field(name = players.title, value = 'by {}'.format(message.author.id), inline = False)
                 await message.channel.send(embed = embed)
-                if not message.guild.voice_client.is_playing():
-                    player = queue_list[0]
-                    queue_list.remove(player)
-                    await message.channel.send('{} を再生するよ!'.format(player.title))
-                    await message.guild.voice_client.play(player)
+                while len(queue_list) == 0:
+                    while not message.guild.voice_client.is_playing():
+                        await asyncio.sleep(0.1)
+                    await message.guild.voice_client.play(players)
+                    queue_list.remove[0]
             url = message.content[3:]
             player = await YTDLSource.from_url(url, loop=client.loop)
             await message.channel.send('{} を再生！'.format(player.title))
