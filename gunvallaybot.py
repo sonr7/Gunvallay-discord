@@ -698,7 +698,7 @@ async def on_message(message):
 async def on_member_join(member):
     guild = member.guild
     channel = guild.get_channel(774679471809626124)
-    await client.send_message(channel, 'よろしく！')
+    await client.send_message(channel, '{}よろしく！'.format(member.mention))
 
 
         
