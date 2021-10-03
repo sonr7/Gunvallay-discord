@@ -659,10 +659,10 @@ async def on_message(message):
             await message.channel.send('NOT FOUND!')
     if message.content == '#loop' and message.guild.voice_client.is_playing():
         await message.channel.send('るーぷ！')
-        player = message.guild.voice_client.is_playing
-        while message.content == "#lost":
-            while message.guild.voice_client.is_playing:
-                await asyncio.sleep(0.1)
+        player = message.guild.voice_client.is_playing()
+        while message.guild.voice_client.is_playing():
+            await asyncio.sleep(0.1)
+        while not message.content == "#lost" and message.guild.voice_client.is_playing():
             message.guild.voice_client.play(player)
         await message.channel.send('るーぷ終了！')
     elif message.content == "#stop":
