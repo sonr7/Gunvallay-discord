@@ -27,51 +27,164 @@ zikkenmain = '795957183988629546'
 
 citycodes = {
     "北海道":"016010",
+    "稚内":"011000",
+    "旭川":"012010",
+    "留萌":"012020",
+    "網走":"013010",
+    "北見":"013020",
+    "紋別":"013030",
+    "根室":"014010",
+    "釧路":"014020",
+    "帯広":"014030",
+    "室蘭":"015010",
+    "浦河":"015020",
+    "札幌":"016010",
+    "岩見沢":"016020",
+    "倶知安":"016030",
+    "函館":"017010",
+    "江差":"017020",
     "青森":"020010",
+    "むつ":"020020",
+    "八戸":"020030",
     "岩手":"030010",
+    "盛岡":"030010",
+    "宮古":"030020",
+    "大船渡":"030030",
+    "仙台":"040010",
+    "白石":"040020",
     "宮城":"040010",
+    "横手":"050020",
     "秋田":"050010",
     "山形":"060010",
+    "米沢":"060020",
+    "酒田":"060030",
+    "新庄":"060040",
+    "小名浜":"070020",
+    "若松":"070030",
     "福島":"070010",
     "茨城":"080010",
+    "水戸":"080010",
+    "土浦":"080020",
+    "宇都宮":"090010",
+    "大田原":"090020",
     "栃木":"090010",
     "群馬":"100010",
+    "前橋":"100010",
+    "みなかみ":"100020",
+    "さいたま":"110010",
+    "熊谷":"110020",
+    "秩父":"110030",
     "埼玉":"110010",
     "千葉":"120010",
+    "銚子":"120020",
+    "館山":"120030",
+    "大島":"130020",
+    "八丈島":"130030",
+    "父島":"130040",
     "東京":"130010",
     "神奈川":"140010",
+    "横浜":"140010",
+    "小田原":"140020",
+    "長岡":"150020",
+    "高田":"150030",
+    "相川":"150040",
     "新潟":"150010",
     "富山":"160010",
+    "伏木":"160020",
+    "金沢":"170010",
+    "輪島":"170020",
     "石川":"170010",
     "福井":"180010",
-    "山形":"190010",
+    "敦賀":"180020",
+    "甲府":"190010",
+    "河口湖":"190020",
+    "山梨":"190010",
     "長野":"200010",
+    "松本":"200020",
+    "飯田":"200030",
+    "高山":"210020",
     "岐阜":"210010",
     "静岡":"220010",
+    "網代":"220020",
+    "三島":"220030",
+    "浜松":"220040",
     "愛知":"230010",
+    "名古屋":"230010",
+    "豊橋":"230020",
     "三重":"240010",
+    "津":"240010",
+    "尾鷲":"240020",
+    "大津":"250010",
+    "彦根":"250020",
     "滋賀":"250010",
     "京都":"260010",
+    "舞鶴":"260020",
     "大阪":"270000",
     "兵庫":"280010",
+    "神戸":"280010",
+    "豊岡":"280020",
+    "風屋":"290020",
     "奈良":"290010",
     "和歌山":"300010",
+    "潮岬":"300020",
     "鳥取":"310010",
+    "米子":"310020",
     "島根":"320010",
+    "松江":"320010",
+    "浜田":"320020",
+    "西郷":"320030",
     "岡山":"330010",
+    "津山":"330020",
     "広島":"340010",
-    "山口":"350010",
+    "庄原":"340020",
+    "下関":"350010",
+    "柳井":"350030",
+    "萩":"350040",
+    "山口":"350020",
     "徳島":"360010",
+    "日和佐":"360020",
     "香川":"370000",
+    "高松":"370000",
     "愛媛":"380010",
+    "松山":"380010",
+    "新居浜":"380020",
+    "宇和島":"380030",
     "高知":"390010",
+    "室戸岬":"390020",
+    "清水":"390030",
     "福岡":"400010",
+    "八幡":"400020",
+    "飯塚":"400030",
+    "久留米":"400040",
     "佐賀":"410010",
+    "伊万里":"410020",
+    "佐世保":"420020",
+    "厳原":"420030",
+    "福江":"420040",
     "長崎":"420010",
     "熊本":"430010",
+    "阿蘇乙姫":"430020",
+    "牛深":"430030",
+    "人吉":"430040",
     "大分":"440010",
+    "中津":"440020",
+    "日田":"440030",
+    "佐伯":"440040",
+    "延岡":"450020",
+    "都城":"450030",
+    "高千穂":"450040",
     "宮崎":"450010",
+    "鹿屋":"460020",
+    "種子島":"460030",
+    "名瀬":"460040",
     "鹿児島":"460010",
+    "那覇":"470010",
+    "名護":"470020",
+    "久米島":"470030",
+    "南大東":"470040",
+    "宮古島":"470050",
+    "石垣島":"470060",
+    "与那国島":"470070",
     "沖縄":"471010",    
 }
 
@@ -196,6 +309,8 @@ ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
     
 rooms = {0:"example"}
 
+queue_list = []
+
 async def on_member_join(member):
     guild = member.guild
     channel = guild.get_channel(774679471809626124)
@@ -237,6 +352,7 @@ async def on_ready():
 async def on_message(message):
     print(message.author.name + "<" + message.content)
     reg_res = re.compile(u"#wea (.+)").search(message.content)
+    voice_client = message.guild.voice_client
     if message.author.bot:
         return
     if '。' in message.content:
@@ -338,6 +454,9 @@ async def on_message(message):
         embed.add_field(name = '`#ranks`', value = 'それぞれのみんはやのランクの人数を教えてくれるよ！', inline = False)
         embed.add_field(name = '`#zikan`', value = 'タイマーを使えるよ！', inline = False)
         embed.add_field(name = '`#wea`', value = '天気予報が見れるよ！(都道府県でやってね！)', inline = False)
+        embed.add_field(name = '`#p`(音楽用)', value = '音楽が流せるよ！', inline = False)
+        embed.add_field(name = '`#leave`(音楽用)', value = 'ボイチャにいるbotを切断できるよ！', inline = False)
+        embed.add_field(name = '`#stop`(音楽用)', value = '流している音楽を止めれるよ！', inline = False)
         await message.channel.send(embed = embed)
     if '#llt' in message.content:
         rlt_list = message.content.split()
@@ -437,7 +556,7 @@ async def on_message(message):
             await message.channel.send(embed = embed)
         except wikipedia.exceptions.PageError:
             await message.channel.send('ページが見つからん！')
-    if nowtime == '00:00':
+    if nowtime == '15:00':
         await timer()
     if '#ngadd' in message.content:
         await NG(message)
@@ -501,11 +620,6 @@ async def on_message(message):
         for i in rooms[message.channel.id].history:
             say = say + '| {} |  {}  |  {}  |\n'.format(i['request'], i['hit'], i['brow'])
         await message.channel.send(say)
-    if message.content == '#join':
-        if message.author.voice is None:
-            await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
-            return
-        await message.author.voice.channel.connect()
     elif message.content == '#leave':
         if message.guild.voice_client is None:
             await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
@@ -513,17 +627,46 @@ async def on_message(message):
         await message.guild.voice_client.disconnect()
         await message.channel.send("バイバイ！")
     elif message.content.startswith('#p'):
-        if message.guild.voice_client is None:
-            await message.channel.send("接続していません。")
-            return
-        if message.guild.voice_client.is_playing():
-            await message.channel.send("再生中だよ！")
-            return
-        url = message.content[3:]
-        player = await YTDLSource.from_url(url, loop=client.loop)
-        await message.guild.voice_client.play(player)
-        await message.channel.send('{} を再生するよ！'.format(player.title))
-    elif message.content == "!stop":
+        try:
+            if message.author.voice is None:
+                await message.channel.send('おーっと、ボイスチャンネルにいないからできないようだ！')
+            if message.guild.voice_client is None:
+                await message.author.voice.channel.connect()
+            url = message.content[3:]
+            player = await YTDLSource.from_url(url, loop=client.loop)
+            await message.channel.send('{} を再生！'.format(player.title))
+            message.guild.voice_client.play(player)
+            if message.content == '#np':
+                if not message.guild.voice_client.is_playing():
+                    await message.channel.send("おーっと、再生してないからできないようだ！")
+                    return
+                embed = discord.Embed(title = player.title, url = player)
+                await message.channel.send(embed = embed)
+        except discord.errors.ClientException:
+            embed = discord.Embed(title = 'キュー')
+            url = message.content[3:]
+            players = await YTDLSource.from_url(url, loop = client.loop)
+            queue_list.append(players)
+            valu = f'by {message.author.display_name}({message.author.name}#{message.author.discriminator})'
+            embed.add_field(name = players.title, value = valu, inline = False)
+            await message.channel.send(embed = embed)
+            while len(queue_list) == 0:
+                while not message.guild.voice_client.is_playing():
+                    await asyncio.sleep(0.1)
+                await message.guild.voice_client.play(queue_list[0])
+                queue_list.remove[0]
+        except youtube_dl.utils.DownloadError:
+            await message.channel.send('NOT FOUND!')
+    if message.content == '#loop' and message.guild.voice_client.is_playing():
+        await message.channel.send('るーぷ！')
+        player = message.guild.voice_client.is_playing()
+        while message.guild.voice_client.is_playing():
+            await asyncio.sleep(0.1)
+        while not message.content == "#lost" and message.guild.voice_client.is_playing():
+            while True:
+                message.guild.voice_client.play(player)
+        await message.channel.send('るーぷ終了！')
+    elif message.content == "#stop":
         if message.guild.voice_client is None:
             await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
             return
@@ -532,6 +675,9 @@ async def on_message(message):
             return
         message.guild.voice_client.stop()
         await message.channel.send("停止...")
+    if '#wel' in message.content:
+        s = f"https://weather.tsukumijima.net/primary_area.xml"
+        await message.channel.send(s)
     if reg_res:
       if reg_res.group(1) in citycodes.keys():
         citycode = citycodes[reg_res.group(1)]
@@ -539,17 +685,27 @@ async def on_message(message):
         resp = json.loads(resp.decode("utf-8"))
         msg = "__【お天気情報：**" + resp["location"]["city"] + "**】__\n"
         for f in resp["forecasts"]:
-          msg += f["dateLabel"] + "：**" + f["telop"] + "**\n"
+          msg += f["dateLabel"] + "：**" + f["telop"] + "**" + "　最高気温" + "：**" + str(f["temperature"]["max"]["celsius"]) + "℃**" + "　最低気温" + "：**" + str(f["temperature"]["min"]["celsius"]) +"℃**\n"
         msg += "```" + resp["description"]["bodyText"] + "```"
         await message.channel.send(msg)
       else:
         await message.channel.send("そこの天気はわかりません...")
         
-        
 async def on_member_join(member):
     guild = member.guild
     channel = guild.get_channel(774679471809626124)
-    await client.send_message(channel, 'よろしく！')
+    await client.send_message(channel, '{}よろしく！'.format(member.mention))
+    
+    #        async def play():
+    #        while not message.guilod.voice_client.is_playing:
+    #        while True:
+    #            waiter = asyncio.Future()
+    #            message.guild.voice_client.play(message.guild.voice_client.source, after=waiter.set_result) 
+    #            await waiter
+    #    play_task = client.loop.create_task(play())
+    #    lost_message = await client.wait_for("message", check = lambda m: m.content == "#lost")
+    #    play_task.cancel()
+    #    await message.channel.send('るーぷ終了！')
 
 
         
