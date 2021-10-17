@@ -208,6 +208,8 @@ bot = discord.Client(intents=discord.Intents.all())
 
 slash_client = SlashCommand(bot, sync_commands=True)
 
+presence = discord.Game("#help")
+
 X = datetime.now().strftime('%H')
 Xint = int(X) + 9
 NK = f'今は%Y年%m月%d日{Xint}:%Mだぜ！'
