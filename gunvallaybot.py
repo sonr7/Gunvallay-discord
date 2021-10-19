@@ -664,7 +664,7 @@ async def on_message(message):
         while len(queue_list) != 0:
             while message.guild.voice_client.is_playing():
                 await asyncio.sleep(1)
-            await message.channel.send('``{}`` を再生！'.format{melo)
+            await message.channel.send('``{}`` を再生！'.format{melo})
             await message.guild.voice_client.play(melo)
             queue_list.remove(melo)
     if message.content == '#loop' and message.guild.voice_client.is_playing():
