@@ -651,7 +651,7 @@ async def on_message(message):
                 await message.channel.send(embed = embed)
         except youtube_dl.utils.DownloadError:
             await message.channel.send('NOT FOUND!')
-    elif message.content.startswith('#pl'):
+    elif message.content.startswith('#pl') and message.guild.voice_client.is_playing():
         url = message.content[4:]
         player = await YTDLSource.from_url(url, loop=client.loop)
         queue_list.append(player)
