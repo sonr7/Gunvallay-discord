@@ -358,6 +358,7 @@ async def on_message(message):
     print(message.author.name + "<" + message.content)
     reg_res = re.compile(u"#wea (.+)").search(message.content)
     voice_client = message.guild.voice_client
+    vcl = f'{message.author.nick} ({message.author.name}#{message.author.descriminator})'
     if message.author.bot:
         return
     if '。' in message.content:
@@ -650,15 +651,20 @@ async def on_message(message):
                 await message.channel.send(embed = embed)
         except youtube_dl.utils.DownloadError:
             await message.channel.send('NOT FOUND!')
-    elif message.content.startswith('#pl') and message.guild.voice_client.is_playing():
+    elif message.content.startswith('#pl'):
         url = message.content[4:]
         player = await YTDLSource.from_url(url, loop=client.loop)
         queue_list.append(player)
         melo = queue_list[0]
         await message.channel.send('おーっと、再生中のようだ！')
+        for i in queue_list:
+            embed = discord.Embed(title = 'キュー')
+            embed.add_field(name = i, value = vcl, inline = False)
+        await message.channel.send(embed = embed)
         while len(queue_list) != 0:
             while message.guild.voice_client.is_playing():
                 await asyncio.sleep(1)
+            await message.channel.send('``{}`` を再生！'.format{melo)
             await message.guild.voice_client.play(melo)
             queue_list.remove(melo)
     if message.content == '#loop' and message.guild.voice_client.is_playing():
