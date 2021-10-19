@@ -17,6 +17,7 @@ import sys
 import wikipedia
 import json
 import urllib
+import collections
 from discord_slash import SlashCommand, SlashContext
 
 kouyatitai = '790254976198115380'
@@ -212,6 +213,10 @@ X = datetime.now().strftime('%H')
 Xint = int(X) + 9
 NK = f'今は%Y年%m月%d日{Xint}:%Mだぜ！'
 now = datetime.now().strftime(NK)
+
+queue_list = []
+
+qu = collections.OrderedDict()
 
 async def create_channel(message, channel_name):
     guild = message.guild
@@ -624,17 +629,18 @@ async def on_message(message):
         if message.guild.voice_client is None:
             await message.channel.send("おーっと、ボイスチャンネルにいないからできないようだ！")
             return
+        queue_list = []
         await message.guild.voice_client.disconnect()
         await message.channel.send("バイバイ！")
-    elif message.content.startswith('#p'):
+    elif message.content.startswith('#pl'):
         try:
             if message.author.voice is None:
                 await message.channel.send('おーっと、ボイスチャンネルにいないからできないようだ！')
             if message.guild.voice_client is None:
                 await message.author.voice.channel.connect()
-            url = message.content[3:]
+            url = message.content[4:]
             player = await YTDLSource.from_url(url, loop=client.loop)
-            await message.channel.send('{} を再生！'.format(player.title))
+            await message.channel.send('``{}`` を再生！'.format(player.title))
             message.guild.voice_client.play(player)
             if message.content == '#np':
                 if not message.guild.voice_client.is_playing():
@@ -642,21 +648,19 @@ async def on_message(message):
                     return
                 embed = discord.Embed(title = player.title, url = player)
                 await message.channel.send(embed = embed)
-        except discord.errors.ClientException:
-            embed = discord.Embed(title = 'キュー')
-            url = message.content[3:]
-            players = await YTDLSource.from_url(url, loop = client.loop)
-            queue_list.append(players)
-            valu = f'by {message.author.display_name}({message.author.name}#{message.author.discriminator})'
-            embed.add_field(name = players.title, value = valu, inline = False)
-            await message.channel.send(embed = embed)
-            while len(queue_list) == 0:
-                while not message.guild.voice_client.is_playing():
-                    await asyncio.sleep(0.1)
-                await message.guild.voice_client.play(queue_list[0])
-                queue_list.remove[0]
         except youtube_dl.utils.DownloadError:
             await message.channel.send('NOT FOUND!')
+    elif message.content.startswith('#pl') and message.guild.voice_client.is_playing():
+        url = message.content[4:]
+        player = await YTDLSource.from_url(url, loop=client.loop)
+        queue_list.append(player)
+        melo = queue_list[0]
+        await message.channel.send('おーっと、再生中のようだ！')
+        while len(queue_list) != 0:
+            while message.guild.voice_client.is_playing():
+                await asyncio.sleep(1)
+            await message.guild.voice_client.play(melo)
+            queue_list.remove(melo)
     if message.content == '#loop' and message.guild.voice_client.is_playing():
         await message.channel.send('るーぷ！')
         player = message.guild.voice_client.is_playing()
