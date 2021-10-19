@@ -358,7 +358,7 @@ async def on_message(message):
     print(message.author.name + "<" + message.content)
     reg_res = re.compile(u"#wea (.+)").search(message.content)
     voice_client = message.guild.voice_client
-    vcl = f'{message.author.nick} ({message.author.name}#{message.author.descriminator})'
+    vcl = f'{message.author.nick} ({message.author.name}#{message.author.discriminator})'
     if message.author.bot:
         return
     if '。' in message.content:
