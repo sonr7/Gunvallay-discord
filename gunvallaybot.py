@@ -352,6 +352,7 @@ nowtime = datetime.now().strftime('%H:%M')
 @client.event
 async def on_ready():
     print('起動しました')
+    await bot.change_presence(activity=presence)
 
 @client.event
 async def on_message(message):
