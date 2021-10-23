@@ -218,6 +218,8 @@ queue_list = []
 
 qu = collections.OrderedDict()
 
+presence = discord.Game('#help')
+
 async def create_channel(message, channel_name):
     guild = message.guild
     overwrites = {guild.default_role: discord.PermissionOverwrite(read_messages=False), guild.me: discord.PermissionOverwrite(read_messages=True)}
