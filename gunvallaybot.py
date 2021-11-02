@@ -566,6 +566,12 @@ async def on_message(message):
             await message.channel.send('ページが見つからん！')
     if nowtime == '15:00':
         await timer()
+    if "#embed" in message.content:
+        embl = message.content.split()
+        embl.remove('#embed')
+        tit = '\n'.join(embl)
+        embed = discord.Embed(title = '**{}**'.format(tit))
+        await message.channel.send(embed = embed)
     if '#ngadd' in message.content:
         await NG(message)
     if '#nglist' in message.content:
