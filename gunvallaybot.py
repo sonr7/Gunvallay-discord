@@ -572,7 +572,6 @@ async def on_message(message):
         embl.remove('#embed')
         embls = ['' if i == '改行' else i for i in embl]
         tit = '\n'.join(embls)
-        await message.channel.send(tit)
         embed = discord.Embed(title = '**{}**'.format(tit))
         await message.channel.send(embed = embed)
     if '#ngadd' in message.content:
