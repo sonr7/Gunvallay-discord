@@ -568,13 +568,11 @@ async def on_message(message):
     if nowtime == '15:00':
         await timer()
     if "#embed" in message.content:
-        if message.content[7:13] == 'color=':
-            colors = message.content[13:19]
         embl = message.content.split() 
         embl.remove('#embed')
         embls = ['' if i == '改行' else i for i in embl]
         tit = '\n'.join(embls)
-        embed = discord.Embed(title = '**{}**'.format(tit), color = '0x{}'.format(colors))
+        embed = discord.Embed(title = '**{}**'.format(tit))
         await message.channel.send(embed = embed)
     if '#ngadd' in message.content:
         await NG(message)
