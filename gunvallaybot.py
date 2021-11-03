@@ -570,7 +570,7 @@ async def on_message(message):
     if "#embed" in message.content:
         embl = message.content.split() 
         embl.remove('#embed')
-        for i in embl.index('\n'):
+        for i in embl.index('改行'):
             await message.channel.send(i)
         tit = '\n'.join(embls)
         await message.channel.send(tit)
