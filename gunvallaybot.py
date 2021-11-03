@@ -573,6 +573,7 @@ async def on_message(message):
             if value == '\n':
                 embl[index] = ''
         tit = '\n'.join(embl)
+        await message.channel.send(tit)
         embed = discord.Embed(title = '**{}**'.format(tit))
         await message.channel.send(embed = embed)
     if '#ngadd' in message.content:
