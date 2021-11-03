@@ -570,8 +570,7 @@ async def on_message(message):
     if "#embed" in message.content:
         embl = message.content.split() 
         embl.remove('#embed')
-        for i in embl.index('改行'):
-            await message.channel.send(i)
+        embls = ['' if i == '改行' else = i for i in embl]
         tit = '\n'.join(embls)
         await message.channel.send(tit)
         embed = discord.Embed(title = '**{}**'.format(tit))
