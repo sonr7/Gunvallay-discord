@@ -465,6 +465,7 @@ async def on_message(message):
         embed.add_field(name = '`#p`(音楽用)', value = '音楽が流せるよ！', inline = False)
         embed.add_field(name = '`#leave`(音楽用)', value = 'ボイチャにいるbotを切断できるよ！', inline = False)
         embed.add_field(name = '`#stop`(音楽用)', value = '流している音楽を止めれるよ！', inline = False)
+        embed.add_field(name = '`#embed`', value = '埋め込みで送れるよ！', inline = False)
         await message.channel.send(embed = embed)
     if '#llt' in message.content:
         rlt_list = message.content.split()
