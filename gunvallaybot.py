@@ -19,6 +19,7 @@ import json
 import urllib
 import collections
 from discord_slash import SlashCommand, SlashContext
+from dislash import slash_commands, Option, OptionType
 
 kouyatitai = '790254976198115380'
 
@@ -205,6 +206,9 @@ intents.members = True
 
 client = discord.Client(intents = intents)
 
+clients = commands.Bot(command_prefix = '/')
+slash = slash_commands.SlashClient(clients)
+
 bot = discord.Client(intents=discord.Intents.all())
 
 slash_client = SlashCommand(bot, sync_commands=True)
@@ -219,6 +223,14 @@ queue_list = []
 qu = collections.OrderedDict()
 
 presence = discord.Game('#help')
+
+@slash.command(
+    name = 'fjk',
+    description = 'くぁwせdrftgyふじこlp',
+)
+async def fjk(inter):
+    await inter.reply('くぁwせdrftgyふじこlp')
+    
 
 async def create_channel(message, channel_name):
     guild = message.guild
