@@ -3,3 +3,4 @@ wikipedia==1.4.0
 discord-py-interactions==3.0.2
 youtube_dl==2021.6.6
 ffmpeg==1.4
+dislash.py==1.4.9
