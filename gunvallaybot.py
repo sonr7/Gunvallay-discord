@@ -25,9 +25,8 @@ kouyatitai = '790254976198115380'
 
 main = '774933645001621545'
 
-zikkenmain = '795957183988629546'
-
-yama = '804336606236508172'
+zikkenmain = '79595718398862954'
+test_guilds = [804336606236508172, 774679471243788339]
 
 citycodes = {
     "北海道":"016010",
@@ -229,7 +228,7 @@ presence = discord.Game('#help')
 @slash.command(
     name = 'fjk',
     description = 'くぁwせdrftgyふじこlp',
-    guild_ids = yama
+    guild_ids = test_guilds
 )
 async def fjk(inter):
     await inter.reply('くぁwせdrftgyふじこlp')
