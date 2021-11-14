@@ -27,6 +27,8 @@ main = '774933645001621545'
 
 zikkenmain = '795957183988629546'
 
+yama = '804336606236508172'
+
 citycodes = {
     "北海道":"016010",
     "稚内":"011000",
@@ -227,6 +229,7 @@ presence = discord.Game('#help')
 @slash.command(
     name = 'fjk',
     description = 'くぁwせdrftgyふじこlp',
+    guild_ids = yama
 )
 async def fjk(inter):
     await inter.reply('くぁwせdrftgyふじこlp')
