@@ -26,6 +26,7 @@ kouyatitai = '790254976198115380'
 main = '774933645001621545'
 
 zikkenmain = '79595718398862954'
+
 test_guilds = [804336606236508172, 774679471243788339]
 
 citycodes = {
@@ -232,6 +233,25 @@ presence = discord.Game('#help')
 )
 async def fjk(inter):
     await inter.reply('くぁwせdrftgyふじこlp')
+    
+@slash.command(
+    name = 'ebr',
+    description = 'サーバーのメンバー数などがわかるよ！',
+    guild_ids = test_guilds
+)
+async def ebr(inter):
+    embed = discord.Embed(title = 'みんはや鯖データ')
+    guild = message.guild
+    ebr_all = guild.member_count
+    ebr_user = sum(1 for member in guild.members if not member.bot)
+    ebr_bot = sum(1 for member in guild.members if member.bot)
+    embed.add_field(name = '`メンバー数`', value = ebr_all)
+    embed.add_field(name = '`人数`', value = ebr_user)
+    embed.add_field(name = '`bot数`', value = ebr_bot)
+    embed.add_field(name = 'テキストチャンネル数', value = len(message.guild.text_channels), inline = False)
+    embed.add_field(name = 'ボイスチャンネル数', value = len(message.guild.voice_channels), inline = False)
+    embed.add_field(name = 'カテゴリー数', value = len(message.guild.categories), inline = False)
+    await inter.reply(embed = embed)
     
 
 async def create_channel(message, channel_name):
