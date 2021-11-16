@@ -207,8 +207,8 @@ intents = discord.Intents.default()
 intents.members = True
 
 client = discord.Client(intents = intents)
-clients = commands.Bot(command_prefix = '/')
-slash = slash_commands.SlashClient(clients)
+bot = commands.Bot(command_prefix = '/')
+slash = slash_commands.SlashClient(bot)
 
 bot = discord.Client(intents=discord.Intents.all())
 
