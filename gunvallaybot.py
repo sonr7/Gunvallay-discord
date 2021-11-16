@@ -206,10 +206,8 @@ token = os.environ.get('DISCORD_BOT_TOKEN')
 intents = discord.Intents.default()
 intents.members = True
 
-client = discord.Client(intents = intents)
-
-clients = commands.Bot(command_prefix = '/')
-slash = slash_commands.SlashClient(clients)
+client = discord.Client(intents = intents)commands.Bot(command_prefix = '/')
+slash = slash_commands.SlashClient(client)
 
 bot = discord.Client(intents=discord.Intents.all())
 
@@ -788,4 +786,3 @@ async def on_member_join(member):
                    
 
 client.run(token)
-clients.run(token)
