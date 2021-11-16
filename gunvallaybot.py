@@ -206,7 +206,7 @@ token = os.environ.get('DISCORD_BOT_TOKEN')
 intents = discord.Intents.default()
 intents.members = True
 
-client = discord.Client(intents = intents)commands.Bot(command_prefix = '/')
+client = discord.Client(intents = intents), commands.Bot(command_prefix = '/')
 slash = slash_commands.SlashClient(client)
 
 bot = discord.Client(intents=discord.Intents.all())
