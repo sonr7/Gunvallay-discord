@@ -788,3 +788,4 @@ async def on_member_join(member):
                    
 
 client.run(token)
+clients.run(token)
