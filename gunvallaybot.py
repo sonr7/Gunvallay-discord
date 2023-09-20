@@ -32,7 +32,7 @@ async def on_message(message: discord.Message):
 
 @bot.command(name = "Register", discription = "告知メッセージの登録")
 async def register(ctx: discord.ApplicationContext, Content: str):
-    Notification_list.append(str)
+    Notification_list.append(Content)
     await ctx.respond("告知メッセージの登録完了")
     NOW = datetime.now().strftime('%H%M%S')
     while Notification_list:
