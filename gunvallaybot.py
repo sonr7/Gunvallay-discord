@@ -3,7 +3,6 @@ import asyncio
 import youtube_dl
 import re
 import os
-import ffmpeg
 from discord.ext import commands
 from discord.ext import tasks
 import math
@@ -14,7 +13,6 @@ from datetime import datetime
 import time
 import random
 import sys
-import wikipedia
 import json
 import urllib
 import collections
@@ -38,9 +36,15 @@ async def register(ctx: discord.ApplicationContext, Content: str):
     while Notification_list:
         if NOW == "103000":
             await ctx.respond(Notification_list.pop(0))
-    
-    
-                                                                                             
+
+@bot.command(name = "list", discription = "告知メッセージのリストを確認")
+async def list(ctx: discord.ApplicationContext):
+    await ctx.respond(Notification_list)
+
+@bot.command(name = "delete", discription = "最後に登録された告知メッセージの削除")
+async def delete(ctx :discord.ApplicationContext):
+    del Notification_list[-1]
+    await ctx.respond(f'{int(len(Notification_list)) + 1}番目の告知メッセージを削除')
                                                
             
 
