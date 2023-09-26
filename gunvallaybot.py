@@ -3,16 +3,16 @@ import os
 from datetime import datetime
 
 bot = discord.Bot(
-        intents=discord.Intents.all(), 
-        activity=discord.Game("JPSをプレイ中"),
+        intents = discord.Intents.all(), 
+        activity = discord.Game("JPSをプレイ中"),
 )
 
-token = os.environ.get("token")
+token=os.environ.get("token")
 
 Notification_list = []
 
 @bot.event
-async def on_message(message : discord.Message):
+async def on_message(message: discord.Message):
     if message.author.bot:
         return
     if message.content == 'hello':
