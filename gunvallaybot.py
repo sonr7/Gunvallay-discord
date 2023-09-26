@@ -12,14 +12,14 @@ token = os.environ.get("token")
 Notification_list = []
 
 @bot.event
-async def on_message(message: discord.Message):
+async def on_message(message : discord.Message):
     if message.author.bot:
         return
     if message.content == 'hello':
         await message.reply("Hello!")
 
 @bot.command(name = "Register", discription = "告知メッセージの登録")
-async def register(ctx: discord.ApplicationContext, Content: str):
+async def register(ctx : discord.ApplicationContext, Content : str):
     Notification_list.append(Content)
     await ctx.respond("告知メッセージの登録完了")
     while Notification_list:
