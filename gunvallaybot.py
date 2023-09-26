@@ -1,13 +1,11 @@
 import discord
 import asyncio
-import youtube_dl
 import re
 import os
 from discord.ext import commands
 from discord.ext import tasks
 import math
 from functools import reduce
-from operator import mul
 from fractions import Fraction
 from datetime import datetime
 import time
@@ -15,9 +13,13 @@ import random
 import sys
 import json
 import urllib
-import collections
 from discord_slash import SlashCommand, SlashContext
 from dislash import slash_commands, Option, OptionType
+
+bot = discord.Bot(
+        intents=discord.Intents.all(), 
+        activity=discord.Game("JPSをプレイ中"),
+)
 
 Notification_list = []
 
@@ -59,5 +61,4 @@ async def delete(ctx :discord.ApplicationContext):
        
                    
 
-client.run(token)
-clients.run(token)
+bot.run(token)
