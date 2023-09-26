@@ -36,8 +36,8 @@ async def on_message(message: discord.Message):
 async def register(ctx: discord.ApplicationContext, Content: str):
     Notification_list.append(Content)
     await ctx.respond("告知メッセージの登録完了")
-    NOW = datetime.now().strftime('%H%M%S')
     while Notification_list:
+        NOW = datetime.now().strftime('%H%M%S')
         if NOW == "103000":
             await ctx.respond(Notification_list.pop(0))
 
