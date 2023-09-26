@@ -49,5 +49,5 @@ async def delete(ctx :discord.ApplicationContext):
     await ctx.respond(f'{int(len(Notification_list)) + 1}番目の告知メッセージを削除')
 
 
-
+token = os.environ.get("Token")
 bot.run(token)
