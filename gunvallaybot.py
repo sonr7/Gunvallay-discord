@@ -19,7 +19,7 @@ async def on_message(message: discord.Message):
         await message.reply("Hello!")
 
 @bot.command(name = "Register", discription = "告知メッセージの登録")
-async def register(ctx : discord.ApplicationContext, Content : str):
+async def register(ctx: discord.ApplicationContext, Content: str):
     Notification_list.append(Content)
     await ctx.respond("告知メッセージの登録完了")
     while Notification_list:
@@ -32,7 +32,7 @@ async def list(ctx: discord.ApplicationContext):
     await ctx.respond(Notification_list)
 
 @bot.command(name = "delete", discription = "最後に登録された告知メッセージの削除")
-async def delete(ctx :discord.ApplicationContext):
+async def delete(ctx: discord.ApplicationContext):
     del Notification_list[-1]
     await ctx.respond(f'{int(len(Notification_list)) + 1}番目の告知メッセージを削除')
                                                
