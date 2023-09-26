@@ -47,18 +47,7 @@ async def list(ctx: discord.ApplicationContext):
 async def delete(ctx :discord.ApplicationContext):
     del Notification_list[-1]
     await ctx.respond(f'{int(len(Notification_list)) + 1}番目の告知メッセージを削除')
-                                               
-            
 
 
-                                               
-        
-            
-            
-                                             
-                                             
-        
-       
-                   
-
+token = os.environ.get("Token")
 bot.run(token)
