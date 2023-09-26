@@ -21,6 +21,8 @@ bot = discord.Bot(
         activity=discord.Game("JPSをプレイ中"),
 )
 
+token = os.environ.get("token")
+
 Notification_list = []
 
 @bot.event
